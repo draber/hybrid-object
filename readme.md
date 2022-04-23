@@ -1,68 +1,111 @@
 # Hybrid Object
 
-_HybridObject_ is a regular plain object with the addition of many of the functions known from _Arrays_, _Sets_, and _Maps_.
-It supports value access in `dotted.string.notation`, similar, though not identical to [`Lodash.get()`](https://lodash.com/docs/#get).
+The most common collections types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place and their advantages, but also their shortcomings; the latter show especially on deeply nested collections. 
 
-## Dotted string notation
+To set a new property on `another.deeply.nested.path` of an _Object_, you'll have to check on every step along the way if the current level exists and to create it if it doesn't. _Lodash_ is one of the libraries that with [`_.get()`](https://lodash.com/docs/#get), [`_.set()`](https://lodash.com/docs/#set), [`_.unset()`](https://lodash.com/docs/#unset) or [`_.has()`](https://lodash.com/docs/#has) offers an easy way to access object properties. It uses a `dotted.string.notation` pattern (see Lodash's [`get()`](https://lodash.com/docs/#get) docs for example). This is not to be confused with JavaScript's [Dot Notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation).
 
-Setting properties in objects can be a tedious task. If you want set a new property on `another.deeply.nested.path`, you'll have to check on every step along the way if the current level exists and to create it if it doesn't.
+While _Objects_ are great at storing complex data structures, they lack all those convenient functions that _Arrays_, _Maps_ or _Sets_ have. They rely on external code to perform common tasks such as looping or filtering to name but a few.
 
-Take the object below for example:
+So how about building an object type thats overcomes the drawbacks of arrays and objects? This exactly what _Hybrid Objects_ are made for; a plain object with built-in _Map resp. Set_-style `set()` and `get()` functions, that support Lodash-syntax. On top of that a number of _Array_-style methods such as `forEach()`, `map()`, `filter()`.
 
+## Installation
+
+```bash
+npm i hybrid-object
+```
+
+## Usage
+    
 ```javascript
-const someObject = {
+import HybridObject from 'hybrid-object'; // note that implemented as esm, not as cjs
+
+const hObj = new HybridObject({
     path: {
         to: {
             string: "string",
             integer: 42,
-            float: 3.14,
-            boolean: true,
-            fn: () => {
-                return true;
-            }
+            float: 3.14
         },
     },
-}
+});
 ```
- With `dotted.string.notation` you can do this in a single line:
+## Flattened version of the object
+Many of the concepts of _Hybrid Objects_ are based on a flattened version of the object. The keys of this object are the paths of the properties, expressed in `dotted.string.notation`. The value are the values of these properties. These values can be of any type, excluding objects and arrays, as they would become part of the path. There are three methods that are related to the flattened version of the object:
+
+
+| Method           | Description                                                    |
+|:-----------------|:---------------------------------------------------------------|
+| `hObj.flatten()` | returns a copy of the object with all the properties flattened |
+| `hObj.paths()`   | returns an array of all the paths of the properties            |
+| `hObj.finalValues()` | returns an array of all the values of the properties. <br />This is not to be confused `hObj.values()` that, just like `Object.values(obj)`, returns the values at the top level of the object. |
 
 ```javascript
-someObject.set("another.deeply.nested.path", "new value");
+hObj.flatten(); // {'path.to.string': "string", 'path.to.integer': 42, 'path.to.float': 3.14}
+hObj.paths(); // ["path.to.string", "path.to.integer", "path.to.float"]
+hObj.finalValues(); // ["string", 42, 3.14]
 ```
-Retrieving or deleting a property is just as easy:
+## Accessors
+
+Under the hood, _Hybrid Object_ uses Lodash modules for its accessors. If you are already familiar with these, the only thing you have to keep in mind that you need to skip the first argument `object` that you would need in Lodash.
+
+| Method         | Lodash docs                                   | Notes                                    |
+|:---------------|:----------------------------------------------|:-----------------------------------------|
+| `hObj.get()`   | [`_.get()`](https://lodash.com/docs/#get)     | Same signature minus the first argument. |
+| `hObj.set()`   | [`_.set()`](https://lodash.com/docs/#set)     | Same signature minus the first argument. |
+| `hObj.unset()` | [`_.unset()`](https://lodash.com/docs/#unset) | Same signature minus the first argument. |
+| `hObj.has()`   | [`_.has()`](https://lodash.com/docs/#has)     | Same signature minus the first argument. |
 
 ```javascript
-someObject.get("another.deeply.nested.path"); // "new value"
-someObject.delete("another.deeply.nested.path"); // removes the property
+hObj.has("path.to.integer"); // true
+hObj.get("path.to.integer"); // 42
+hObj.set("path.to.integer", 53); // hObj
+hObj.get("path.to.integer"); // 53
+
+hObj.set("another.deeply.nested.path", "new value"); // hObj
+hObj.get("another.deeply.nested.path"); // "new value"
+hObj.unset("another.deeply.nested.path"); // removes the property
+hObj.has("another.deeply.nested.path"); // false
+hObj.get("another.deeply.nested.path", "default value"); // "default value"
 ```
 
-This notation is nothing new, _Lodash_, for instance, lets you do that as well. With _HybridObject_ you no longer rely on an external library, it's a regular object with all the goodies built in.
+## Array-like functionality
 
-## Array, Map and Set functionality 
+_Hybrid Objects_ borrow a number of methods from _Arrays_. They are as similar as possible, but there are some differences. They share the signature with their counterparts, mostly a callback function and an optional `thisArg` object.
 
-In addition to the standard object functionality, _HybridObject_ implements a number of functions from Arrays, Maps and Sets.
 
-| Function            | Equivalent of...       | Notes                     |
-|---------------------|------------------------|---------------------------|
-| `obj.clone()`       | `structuredClone(obj)` |                           |
-| `obj.delete()`      | `Map\|Set.delete()`    |                           |
-| `obj.entries()`     | `Object.entries(obj)`  |                           |
-| `obj.every()`       | `Array.every()`        |                           |
-| `obj.filter()`      | `Array.every()`        |                           |
-| `obj.find()`        | `Array.find()`         |                           |
-| `obj.findPath()`    | `Array.findIndex()`    |                           |
-| `obj.forEach()`     | `Array.forEach()`      |                           |
-| `obj.get()`         | `Map\|Set.get()`       |                           |
-| `obj.has()`         | `Map\|Set.has()`       |                           |
-| `obj.includes()`    | `Array.includes()`     |                           |
-| `obj.keys()`        | `Object.keys(obj)`     |                           |
-| `obj.map()`         | `Array.map()`          |                           |
-| `obj.set()`         | `Map.set()`            |                           |
-| `obj.size()`        | `Map\|Set.size`        | Implemented as a function |
-| `obj.some()`        | `Array.some()`         |                           |
-| `obj.toJson()`      | `JSON.stringify(obj)`  |                           |
-| `obj.values()`      | `Object.values(obj)`   |                           |
-| `obj.finalValues()` | n/a                    |                           |
-| `obj.flatten()`     | n/a                    |                           |
-| `obj.fullPaths()`   | n/a                    |                           |
-| `obj.paths()`       | n/a                    |                           |
+| Method            | Array docs                                                                                                              | Notes                                       |
+|:------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| `hObj.every()`    | [`Array.every()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)         |                                             |
+| `hObj.filter()`   | [`Array.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)       |                                             |
+| `hObj.find()`     | [`Array.find()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)           |                                             |
+| `hObj.findPath()` | [`Array.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) | `dotted.string.notation` instead of integer |
+| `hObj.forEach()`  | [`Array.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)     |                                             |
+| `hObj.includes()` | [`Array.includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)   |                                             |
+| `hObj.keys()`     | [`Array.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)           |                                             |
+| `hObj.map()`      | [`Array.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)             |                                             |
+| `hObj.some()`     | [`Array.some()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)           |                                             |
+| `hObj.length()`   | [`Array.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length)         | Implemented as a function                   |
+| `hObj.values()`   | [`Array.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values)       | Values at the first level                   |
+
+```javascript
+hObj.every((e) => e.startsWith('x')); // false
+hObj.filter((e) => typeof e === 'number'); // [42, 3.14]
+hObj.find((e) => typeof e === 'number'); // 42
+hObj.findPath(42); // 'path.to.integer', inspired by Array.findKey()
+hObj.forEach((e) => console.log(e)); // string, 42, 3.14
+hObj.keys(); // ["path"], note that this is only the top level, use `hObj.paths()` to get all the paths
+hObj.map((e) => e + "-xyz"); // ["string-xyz", "42-xyz", "3.14-xyz"]
+//hObj.reduce((acc, e) => acc + e, 0); // 42 + 3.14 = 55.14
+hObj.some((e) => e.startsWith('x')); // true
+//hObj.sort((a, b) => a - b); // [3.14, 42]
+hObj.values(); // {to: {string: "string", integer: 42, float: 3.14}}, note that this is only the top level, use `hObj.finalValues()` to get all the values
+```
+
+
+
+
+| Method               | Inspired by...             | Notes                                       |
+|----------------------|----------------------------|---------------------------------------------|
+| `hObj.entries()`     | `Object.entries(obj)`      |                                             |
+| `hObj.size()`        | `Map.size`, `Array.length` | Implemented as a function                   |
+| `hObj.toJson()`      | `JSON.stringify(obj)`      | With argument for pretty-print              |

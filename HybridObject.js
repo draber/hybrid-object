@@ -9,7 +9,7 @@ import isPlainObject from "lodash-es/isPlainObject.js";
  * @param {Object} obj
  * @param {Array} [dotArr]
  * @param {String} [propStr]
- * @returns
+ * @returns {Object}
  */
  const flatten = (obj, flattened = {}, propStr = "") => {
     if (typeof obj === "undefined" || obj === null) {
