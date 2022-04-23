@@ -1,11 +1,11 @@
 {
     "name": "hybrid-object",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "HybridObject.js",
     "type": "module",
     "scripts": {
         "test": "node ./tests/tests.js",
-        "docs": "jsdoc -c ./jsdoc.json"
+        "docs": "jsdoc -c ./jsdoc.json && node ./modules/doc-relocation/index.js"
     },
     "devDependencies": {
         "a-nicer-console": "^1.0.2",

@@ -1,4 +1,51 @@
-import hm from "./ho-methods.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>HybridObject.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="HybridObject.html">HybridObject</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#clone">clone</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#entries">entries</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#every">every</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#filter">filter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#finalValues">finalValues</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#find">find</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#findPath">findPath</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#flatten">flatten</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#forEach">forEach</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#includes">includes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#keys">keys</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#map">map</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#paths">paths</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#size">size</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#some">some</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#toJson">toJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#unset">unset</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#value">value</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="HybridObject.html#values">values</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">HybridObject.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import get from "lodash-es/get.js";
+import set from "lodash-es/set.js";
+import unset from "lodash-es/unset.js";
+import has from "lodash-es/has.js";
+import flattenObject from "flatten-object";
+
+
 
 /**
  * Implementation on top of plain objects that brings a variety of array-like functionality.
@@ -15,58 +62,54 @@ function HybridObject(data = {}) {
      * Non-enumerable properties
      */
     Object.defineProperties(this, {
-        paths: {
-            /**
-             * Retrieve _all_, not only the final paths as an array in `dotted.string.notation`
-             * @memberof HybridObject
-             * @method paths
-             * @instance
-             * @returns {Array}
-             */
-            value: function () {
-                return hm.paths(this);
-            },
-        },
         set: {
             /**
-             * Set a new or overwrite an existing value, supports `dotted.string.notation`
-             * @param {String} path
+             * Sets the value at path of object. If a portion of path doesn't exist, it's created.
+             * Arrays are created for missing index properties while objects are created for all other missing properties.
+             * Uses Lodash's `set` method, but without the `object` argument.
+             * @param {Array|string} path The path of the property to set
              * @param {*} value
              * @memberof HybridObject
-             * @method set
              * @instance
+             * @see https://lodash.com/docs/#set
+             * @since 1.0.0
              * @returns {HybridObject}
              */
             value: function (path, value) {
-                return hm.update(this, path, value);
+                return set(this, path, value);
             },
         },
-        delete: {
+        unset: {
             /**
-             * Delete an existing value, supports `dotted.string.notation`
-             * @param {String} path
+             * Removes the property at path of object.
+             * Uses Lodash's `unset` method, but without the `object` argument.
+             * @param {Array|string} path The path of the property to unset
              * @memberof HybridObject
-             * @method delete
+             * @method unset
              * @instance
-             * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete
+             * @see https://lodash.com/docs/#unset
+             * @since 1.0.0
              * @returns {Boolean}
              */
             value: function (path) {
-                return hm.update(this, path);
+                return unset(this, path);
             },
         },
         get: {
             /**
-             * Retrieve a single (sub-)entry, supports `dotted.string.notation`
-             * @param {String|Number} path
+             * Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
+             * Uses Lodash's `get` method, but without the `object` argument.
+             * @param {Array|string} path The path of the property to get
+             * @param {*} [defaultValue] The default value to return if the path doesn't exist
              * @memberof HybridObject
              * @method get
              * @instance
-             * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
+             * @see https://lodash.com/docs/#get
+             * @since 1.0.0
              * @returns {String|Object}
              */
-            value: function (path) {
-                return hm.get(this, path);
+            value: function (path, defaultValue) {
+                return get(this, path, defaultValue);
             },
         },
         toJson: {
@@ -76,6 +119,7 @@ function HybridObject(data = {}) {
              * @memberof HybridObject
              * @method toJson
              * @instance
+             * @since 1.0.0
              * @returns {String}
              */
             value: function (pretty = false) {
@@ -90,6 +134,7 @@ function HybridObject(data = {}) {
              * @method clone
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
+             * @since 1.0.0
              * @returns {HybridObject}
              */
             value: function (path) {
@@ -105,6 +150,7 @@ function HybridObject(data = {}) {
              * @memberof HybridObject
              * @method entries
              * @instance
+             * @since 1.0.0
              * @returns {Array}
              */
             value: function () {
@@ -120,6 +166,7 @@ function HybridObject(data = {}) {
              * @method every
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+             * @since 1.0.0
              * @returns {Boolean}
              */
             value: function (callbackFn, thisArg) {
@@ -141,6 +188,7 @@ function HybridObject(data = {}) {
              * @method filter
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+             * @since 1.0.0
              * @returns {HybridObject}
              */
             value: function (callbackFn, thisArg) {
@@ -148,7 +196,7 @@ function HybridObject(data = {}) {
                 const flat = this.flatten();
                 for (let [path, value] of Object.entries(flat)) {
                     if (callbackFn(value, path, flat, thisArg)) {
-                        hm.update(filtered, path, value);
+                        set(filtered, path, value);
                     }
                 }
                 return new HybridObject(filtered);
@@ -163,6 +211,7 @@ function HybridObject(data = {}) {
              * @method find
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+             * @since 1.0.0
              * @returns {Primitive|Function|undefined}
              */
             value: function (callbackFn, thisArg) {
@@ -183,6 +232,7 @@ function HybridObject(data = {}) {
              * @method findPath
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+             * @since 1.0.0
              * @returns {Primitive|undefined}
              */
             value: function (callbackFn, thisArg) {
@@ -190,7 +240,7 @@ function HybridObject(data = {}) {
                 const value = this.find(callbackFn, thisArg);
                 return value === undefined
                     ? undefined
-                    : Object.keys(flat).find((key) => flat[key] === value);
+                    : this.paths().find((key) => flat[key] === value);
             },
         },
         flatten: {
@@ -199,18 +249,20 @@ function HybridObject(data = {}) {
              * @memberof HybridObject
              * @method flatten
              * @instance
+             * @since 1.0.0
              * @returns {Object}
              */
             value: function () {
-                return hm.flatten(this);
+                return flattenObject(this);
             },
         },
-        nestedKeys: {
+        paths: {
             /**
              * Retrieve an array with all 'keys.flattened.to.paths'
              * @memberof HybridObject
-             * @method nestedKeys
+             * @method paths
              * @instance
+             * @since 1.0.0
              * @returns {Array}
              */
             value: function () {
@@ -219,10 +271,11 @@ function HybridObject(data = {}) {
         },
         finalValues: {
             /**
-             * Retrieve all values that aren't collections
+             * Retrieve all values from the object
              * @memberof HybridObject
              * @method finalValues
              * @instance
+             * @since 1.0.0
              * @returns {Array}
              */
             value: function () {
@@ -238,6 +291,7 @@ function HybridObject(data = {}) {
              * @method forEach
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+             * @since 1.0.0
              * @returns {undefined}
              */
             value: function (callbackFn, thisArg) {
@@ -249,16 +303,18 @@ function HybridObject(data = {}) {
         },
         has: {
             /**
-             * Equivalent of Map|Set.has, checks if the object has a value at the given path.
-             * @param {String} path
+             * Checks if path is a direct property of object.
+             * Uses Lodash's `has` method, but without the `object` argument.
+             * @param {Array|string} path The path to check
              * @memberof HybridObject
              * @method has
              * @instance
-             * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
-             * @returns {Boolean}
+             * @see https://lodash.com/docs/#has
+             * @since 1.0.0
+             * @returns {Boolean} Returns true if path exists, else false.
              */
             value: function (path) {
-                return this.paths().includes(path);
+                return has(this, path);
             },
         },
         includes: {
@@ -269,6 +325,7 @@ function HybridObject(data = {}) {
              * @method includes
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+             * @since 1.0.0
              * @returns {Boolean}
              */
             value: function (searchElement) {
@@ -282,6 +339,7 @@ function HybridObject(data = {}) {
              * @method keys
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys
+             * @since 1.0.0
              * @returns {Array}
              */
             value: function () {
@@ -297,32 +355,30 @@ function HybridObject(data = {}) {
              * @method map
              * @instance
              * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+             * @since 1.0.0
              * @returns {HybridObject}
              */
             value: function (callbackFn, thisArg) {
                 const mapped = {};
                 const flat = this.flatten();
                 for (let [path, value] of Object.entries(flat)) {
-                    hm.update(
-                        mapped,
-                        path,
-                        callbackFn(value, path, flat, thisArg)
-                    );
+                    set(mapped, path, callbackFn(value, path, flat, thisArg));
                 }
                 return new HybridObject(mapped);
             },
         },
         size: {
             /**
-             * Equivalent of Map|Set.size. Get the number of keys at the top level of the object.
-             * Note that in difference to Map|Set, this is implemented as a function.
+             * Get the number of keys at the top level of the object.
+             * Equivalent of `Map|Set.size`, but implemented as a function.
              * @memberof HybridObject
              * @method size
              * @instance
+             * @since 1.0.0
              * @returns {Number}
              */
-            value: function() { 
-                return this.keys().length; 
+            value: function () {
+                return this.keys().length;
             },
         },
         some: {
@@ -333,6 +389,8 @@ function HybridObject(data = {}) {
              * @memberof HybridObject
              * @method some
              * @instance
+             * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
+             * @since 1.0.0
              * @returns {Boolean}
              */
             value: function (callbackFn, thisArg) {
@@ -351,6 +409,7 @@ function HybridObject(data = {}) {
              * @memberof HybridObject
              * @method values
              * @instance
+             * @since 1.0.0
              * @returns {Array}
              */
             value: function () {
@@ -361,3 +420,22 @@ function HybridObject(data = {}) {
 }
 
 export default HybridObject;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sat Apr 23 2022 20:31:05 GMT+0200 (Central European Summer Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
