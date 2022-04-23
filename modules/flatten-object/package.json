@@ -1,0 +1,6 @@
+{
+    "name": "flatten-object",
+    "version": "1.0.0",
+    "main": "flatten-object.js",
+    "type": "module"
+}

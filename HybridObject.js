@@ -2,35 +2,9 @@ import get from "lodash-es/get.js";
 import set from "lodash-es/set.js";
 import unset from "lodash-es/unset.js";
 import has from "lodash-es/has.js";
-import isPlainObject from "lodash-es/isPlainObject.js";
+import flattenObject from "flatten-object";
 
-/**
- * Retrieve all paths as an array in dot-notation
- * @param {Object} obj
- * @param {Array} [dotArr]
- * @param {String} [propStr]
- * @returns {Object}
- */
- const flatten = (obj, flattened = {}, propStr = "") => {
-    if (typeof obj === "undefined" || obj === null) {
-        return flattened;
-    }
-    const isArray = Array.isArray(obj);
-    if (isArray) {
-        obj = {
-            ...obj,
-        };
-    }
-    Object.entries(obj).forEach(([key, val]) => {
-        const nestedPropStr = propStr + (propStr ? "." : "") + (isArray ? `[${key}]` : key);
-        if (isPlainObject(val) || Array.isArray(val)) {
-            flatten(val, flattened, nestedPropStr);
-        } else {
-            flattened[nestedPropStr] = val;
-        }
-    });
-    return flattened;
-};
+
 
 /**
  * Implementation on top of plain objects that brings a variety of array-like functionality.
@@ -238,7 +212,7 @@ function HybridObject(data = {}) {
              * @returns {Object}
              */
             value: function () {
-                return flatten(this);
+                return flattenObject(this);
             },
         },
         paths: {
@@ -254,11 +228,11 @@ function HybridObject(data = {}) {
                 return Object.keys(this.flatten());
             },
         },
-        values: {
+        finalValues: {
             /**
              * Retrieve all values from the object
              * @memberof HybridObject
-             * @method values
+             * @method finalValues
              * @instance
              * @since 1.0.0
              * @returns {Array}
