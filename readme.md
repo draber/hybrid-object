@@ -32,11 +32,11 @@ const hObj = new HybridObject({
 });
 ```
 
-<!--## Using an Hybrid Object like a regular Object
+<!-- ## Using an Hybrid Object like a regular Object
 
 _Hybrid Objects_ are build on top of regular _Objects_ and can be used in exactly the same way. You can access the above example with `hObj.path.to.string` or `hObj.path.to.integer`. You can use the static methods `Object.keys(hObj)` or `HybridObject.keys(hObj)`, the same is true for `values()`, `assign()` etc.
 
-_There is one pitfall though:_ When you merge regular and hybrid objects with either `Object.assign()` or in spread syntax, you need to ensure that all arguments are hybrid objects, for instance by wrapping them into `new HybridObject()`. Otherwise, depending on which type comes in last, you may end up with a regular object. This issue can easily be overcome by using the static `HybridObject.assign()` method, which does the conversion for you. The same method is also available from within the instance, i. e. `hObj.assign()`.-->
+_There is one pitfall though:_ When you merge regular and hybrid objects with either `Object.assign()` or in spread syntax, you need to ensure that all arguments are hybrid objects, for instance by wrapping them into `new HybridObject()`. Otherwise, depending on which type comes in last, you may end up with a regular object. This issue can easily be overcome by using the static `HybridObject.assign()` method, which does the conversion for you. The same method is also available from within the instance, i. e. `hObj.assign()`. -->
 
 ```javascript
 const hObj = new HybridObject({...});
