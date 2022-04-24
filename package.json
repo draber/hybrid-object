@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "test": "node ./tests/tests.js",
-        "docs": "jsdoc -c ./jsdoc.json && node ./modules/doc-relocation/index.js"
+        "docs": "jsdoc -c ./jsdoc.json"
     },
     "devDependencies": {
         "a-nicer-console": "^1.0.2",
