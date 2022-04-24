@@ -1,6 +1,6 @@
 {
     "name": "hybrid-object",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "main": "HybridObject.js",
     "type": "module",
     "scripts": {
