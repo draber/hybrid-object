@@ -1,4 +1,5 @@
 import isPlainObject from "lodash-es/isPlainObject.js";
+
 /**
  * Retrieve all paths as an array in Lodash-style dot-notation
  * @param {Object} obj
