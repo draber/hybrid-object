@@ -1,12 +1,12 @@
 # Hybrid Object
 
-The most common collections types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place and their advantages, but also their shortcomings; the latter show especially on deeply nested collections. 
+The most common collections types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place and their advantages and shortcomings; the latter show especially on deeply nested collections. 
 
 To set a new property on `another.deeply.nested.path` of an _Object_, you'll have to check on every step along the way if the current level exists and to create it if it doesn't. _Lodash_ is one of the libraries that with [`Lodash.get()`](https://lodash.com/docs/#get), [`Lodash.set()`](https://lodash.com/docs/#set), [`Lodash.unset()`](https://lodash.com/docs/#unset) or [`Lodash.has()`](https://lodash.com/docs/#has) offers an easy way to access object properties. It uses a `dotted.string.notation` pattern (see Lodash's [`get()`](https://lodash.com/docs/#get) docs for example). This is not to be confused with JavaScript's [Dot Notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation).
 
 While _Objects_ are great at storing complex data structures, they lack all those convenient functions that _Arrays_, _Maps_ or _Sets_ have. They rely on external code to perform common tasks such as looping or filtering to name but a few.
 
-So how about building an object type thats overcomes these drawbacks? This is exactly what _Hybrid Object_ is made for; a plain object with built-in _Map resp. Set_-style `set()` and `get()` functions, that support Lodash-syntax. On top of it features dozens of _Array_-style methods such as `forEach()`, `map()` or `filter()`. Finally, it includes common methods like `clone()` and `toJson()` and all of that without losing the original _Object_ functionality.
+So how about building an object type that overcomes these drawbacks? This is exactly what _Hybrid Object_ is made for; a plain object with built-in _Map resp. Set_-style `set()` and `get()` functions, that support Lodash-syntax. On top of it features dozens of _Array_-style methods such as `forEach()`, `map()` or `filter()`. Finally, it includes common methods like `clone()` and `toJson()` and all of that without losing the original _Object_ functionality.
 
 ## Installation
 
@@ -16,7 +16,7 @@ npm i hybrid-object
 
 ## Usage
 
-Below is a simple example of how to create a _Hybrid Object_. For the methods please refer to the [full documentation](//hybrid-object.netlify.app/HybridObject.html).
+Below is a simple example of how to create a _Hybrid Object_. For the methods, please refer to the [full documentation](//hybrid-object.netlify.app/HybridObject.html).
     
 ```javascript
 import HybridObject from 'hybrid-object'; // note that HybridObject is implemented as ESM and not in CJS
@@ -43,7 +43,7 @@ const hObj = new HybridObject({
 _Hybrid Objects_ are build on top of regular _Objects_ and can be used in exactly the same way. You can access the properties in the above example with either `hObj.get('path.to.string')` or `hObj.path.to.string`. You can use all static methods such as `HybridObject.keys(hObj)` or `HybridObject.values(hObj)`; the more common ones, namely `Object.keys()`, `Object.values()`, `Object.entries()` and `Object.assign()` can also be called from withing the instance as `hObj.keys()` or `hObj.values()` etc.
 
 ## Flattened version of the object
-Many of the concepts of _Hybrid Objects_ are based on a flattened version of the object. The keys of this object are the paths of the properties, expressed in `dotted.string.notation`. The values are the values of these properties. These values can be of any type, excluding objects and arrays, as they would become part of the path. To distiguish between the top-level keys and values, that are returned by `Object.keys()` resp. `Object.values()`,  and the keys and values of the flattened version, this document refers to the latter as `paths` and `finalValues`.
+Many of the concepts of _Hybrid Objects_ are based on a flattened version of the object. The keys of this object are the paths of the properties, expressed in `dotted.string.notation`. The values are the values of these properties. These values can be of any type, excluding objects and arrays, as they would become part of the path. To distinguish between the top-level keys and values returned by `Object.keys()` resp. `Object.values()`,  and the keys and values of the flattened version, this document refers to the latter as `paths` and `finalValues`.
 
 The above example would be represented as:
 
@@ -56,7 +56,7 @@ The above example would be represented as:
 ```
 
 ## Method overview
-As described above, _Hybrid Objects_ borrows heavily from _Object_, _Array_ and _Lodash_. The following table is an overview of the methods that are available, and what they have been inspired by. 
+As described above, _Hybrid Objects_ borrow heavily from _Object_, _Array_ and _Lodash_. The following table is an overview of the available methods, and what they have been inspired by. 
 
 The links in the first column point to this documentation, the second column to the original documentation which you might also find helpful.
 
