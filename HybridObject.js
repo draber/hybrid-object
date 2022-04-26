@@ -3,6 +3,7 @@ import set from "lodash-es/set.js";
 import unset from "lodash-es/unset.js";
 import has from "lodash-es/has.js";
 import flattenObject from "flatten-object";
+import { isPlainObject } from "lodash-es";
 
 //import console from 'a-nicer-console'
 
@@ -136,25 +137,23 @@ HybridObject.prototype.entries = function () {
 
 /**
  * Checks whether all entries satisfy the provided callback function.
- * Equivalent of `Array.every()` based on the flattened version of the object.
- * @param {Function} callbackFn Args: value, path, flattenedObject [, thisArg]
+ * Equivalent of `Array.every()`.
+ * @param {Function} callbackFn Args: value, path, entries [, thisArg]
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
  * @returns {Boolean}
  * @example
  * const hObj = new HybridObject({
  *     a: 1,
- *     b: {
- *        bb: 2
- *     },
+ *     b: 2,
  *     c: 3
  * });
  * console.log(hObj.every(value => typeof value === 'number')); // true
  */
 HybridObject.prototype.every = function (callbackFn, thisArg) {
-    const flat = this.flatten();
-    for (let [path, value] of Object.entries(flat)) {
-        if (!callbackFn(value, path, flat, thisArg)) {
+    const entries = this.entries();
+    for (let [path, value] of entries) {
+        if (!callbackFn(value, path, entries, thisArg)) {
             return false;
         }
     }
@@ -163,8 +162,8 @@ HybridObject.prototype.every = function (callbackFn, thisArg) {
 
 /**
  * Returns a HybridObject with all entries that satisfy the provided callback function.
- * Similar to `Array.filter()`. If you are interested in the values only, chain `.finalValues()` on the result.
- * @param {Function} callbackFn Args: value, path, flattenedObject [, thisArg]
+ * Equivalent of `Array.filter()`.
+ * @param {Function} callbackFn Args: value, path, entries [, thisArg]
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
  * @returns {HybridObject}
@@ -177,20 +176,17 @@ HybridObject.prototype.every = function (callbackFn, thisArg) {
  *     c: 3,
  *     d: 'foo'
  * });
- * // as HybridObject:
- * console.log(hObj.filter(value => typeof value === 'number')); // {a:1,b:{bb:2},c:3}
- * // Use finalValues() to return the values as an array:
- * console.log(hObj.filter(value => typeof value === 'number').finalValues()); // [1,2,3]
+ * console.log(hObj.filter(value => typeof value === 'number')); // {a:1,c:3}
  */
 HybridObject.prototype.filter = function (callbackFn, thisArg) {
-    const filtered = {};
-    const flat = this.flatten();
-    for (let [path, value] of Object.entries(flat)) {
-        if (callbackFn(value, path, flat, thisArg)) {
-            set(filtered, path, value);
+    const filtered = new HybridObject({});
+    const entries = this.entries();
+    for (let [path, value] of entries) {
+        if (callbackFn(value, path, entries, thisArg)) {
+            filtered.set(path, value);
         }
     }
-    return new HybridObject(filtered);
+    return filtered;
 };
 
 /**
@@ -199,7 +195,7 @@ HybridObject.prototype.filter = function (callbackFn, thisArg) {
  * @param {Function} callbackFn Args: value, path, flattenedObject [, thisArg]
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
- * @returns {*} Note: Returns any type other than Objects and Arrays as they would become part of the path
+ * @returns {*}
  * @example
  * const hObj = new HybridObject({
  *     a: 1,
@@ -209,13 +205,13 @@ HybridObject.prototype.filter = function (callbackFn, thisArg) {
  *     c: 3,
  *     d: 'foo'
  * });
- * console.log(hObj.find(value => typeof value === 'number' && value > 1)); // 2
+ * console.log(hObj.find(value => typeof value === 'number' && value > 1)); // 3
  */
 HybridObject.prototype.find = function (callbackFn, thisArg) {
     const flat = this.flatten();
     for (let [path, value] of Object.entries(flat)) {
         if (callbackFn(value, path, flat, thisArg)) {
-            return value;
+            return isPlainObject(value) ? new HybridObject(value) : value;
         }
     }
 };
@@ -240,28 +236,11 @@ HybridObject.prototype.find = function (callbackFn, thisArg) {
  */
 HybridObject.prototype.findPath = function (callbackFn, thisArg) {
     const flat = this.flatten();
-    const value = this.find(callbackFn, thisArg);
-    return value === undefined
-        ? undefined
-        : this.paths().find((key) => flat[key] === value);
-};
-
-/**
- * Retrieve an array of all the values of the the flattened object. This is not to be confused with `hObj.values()` which,
- * just like `Object.values(obj)`, returns the values at the top level of the object.
- * @returns {Array}
- * @example
- * const hObj = new HybridObject({
- *     a: 1,
- *     b: {
- *        bb: 2
- *     },
- *     c: 3
- * });
- * console.log(hObj.finalValues()); // [1,2,3]
- */
-HybridObject.prototype.finalValues = function () {
-    return Object.values(this.flatten());
+    for (let [path, value] of Object.entries(flat)) {
+        if (callbackFn(value, path, flat, thisArg)) {
+            return path;
+        }
+    }
 };
 
 /**
@@ -284,8 +263,8 @@ HybridObject.prototype.flatten = function () {
 };
 
 /**
- * Equivalent of `Array.forEach()`, loops over the flattened object.
- * @param {Function} callbackFn Args: value, path, flattenedObject [, thisArg]
+ * Equivalent of `Array.forEach()`.
+ * @param {Function} callbackFn Args: value, path, entries [, thisArg]
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
  * @returns {undefined}
@@ -293,24 +272,29 @@ HybridObject.prototype.flatten = function () {
  * const hObj = new HybridObject({
  *     a: {
  *        aa: 1
+ *     },
+ *     b: {
+ *        bb: 2
  *     }
- * });
- * hObj.forEach((value, path) => console.log(value, path)); // 1, a.aa
+ * }); 
+ * hObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}
  */
 HybridObject.prototype.forEach = function (callbackFn, thisArg) {
-    const flat = this.flatten();
-    for (let [path, value] of Object.entries(flat)) {
-        callbackFn(value, path, flat, thisArg);
+    const entries = this.entries();
+    for (let [path, value] of entries) {
+        callbackFn(value, path, entries, thisArg);
     }
 };
 
 /**
- * Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
+ * Gets the value at path of object. 
+ * - If the resolved value is undefined and `defaultValue` is provided, `defaultValue` will be returned, undefined otherwise.
+ * - If the resolved value is a plain object, it will be converted to a `HybridObject`.
  * Uses Lodash's `get()` method, but without the `object` argument.
  * @param {Array|string} path The path of the property to get
  * @param {*} [defaultValue] The default value to return if the path doesn't exist
  * @see https://lodash.com/docs/#get
- * @returns {*}
+ * @returns {*} 
  * @example
  * const hObj = new HybridObject({
  *     a: {
@@ -328,7 +312,8 @@ HybridObject.prototype.forEach = function (callbackFn, thisArg) {
  * console.log(hObj.get('a')); // {aa:1}
  */
 HybridObject.prototype.get = function (path, defaultValue) {
-    return get(this, path, defaultValue);
+    let value = get(this, path, defaultValue);
+    return isPlainObject(value) ? new HybridObject(value) : value;
 };
 
 /**
@@ -549,9 +534,9 @@ HybridObject.prototype.some = function (callbackFn, thisArg) {
  * @returns {HybridObject}
  * @example
  * const obj = {
- *    a: 1,
- *  b: 2,
- * c: 3,
+ *     a: 1,
+ *     b: 2,
+ *     c: 3,
  * };
  * const sorted = obj.sort((a, b) => {
  *    return a - b;
@@ -559,12 +544,6 @@ HybridObject.prototype.some = function (callbackFn, thisArg) {
  * console.log(sorted); // { a: 1, b: 2, c: 3 }
  * console.log(sorted.keys()); // ['a', 'b', 'c']
  * console.log(sorted.values()); // [1, 2, 3]
- * console.log(sorted.entries()); // [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
- * console.log(sorted.flatten()); // { a: 1, b: 2, c: 3 }
- * console.log(sorted.flatten().keys()); // ['a', 'b', 'c']
- * console.log(sorted.flatten().values()); // [1, 2, 3]
- * console.log(sorted.flatten().entries()); // [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
- * console.log(sorted.flatten().flatten()); // { a: 1, b: 2, c: 3 }
  */
 HybridObject.prototype.sort = function (compareFn) {
     const flat = this.flatten();

@@ -1,6 +1,6 @@
 # Hybrid Object
 
-The most common collections types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place and their advantages and shortcomings; the latter show especially on deeply nested collections. 
+The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. 
 
 To set a new property on `another.deeply.nested.path` of an _Object_, you'll have to check on every step along the way if the current level exists and to create it if it doesn't. _Lodash_ is one of the libraries that with [`Lodash.get()`](https://lodash.com/docs/#get), [`Lodash.set()`](https://lodash.com/docs/#set), [`Lodash.unset()`](https://lodash.com/docs/#unset) or [`Lodash.has()`](https://lodash.com/docs/#has) offers an easy way to access object properties. It uses a `dotted.string.notation` pattern (see Lodash's [`get()`](https://lodash.com/docs/#get) docs for example). This is not to be confused with JavaScript's [Dot Notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation).
 
@@ -63,8 +63,8 @@ The links in the first column point to this documentation, the second column to 
 | Method | External reference | Notes |
 |:-------|:-------------------|:------|
 | [`hObj.assign()`](//hybrid-object.netlify.app/HybridObject.html#assign) | [`Object.assign()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) | static: `HybridObject.assign(hObj, rObj)`, instance: `hObj.assign(rObj)` |
-| [`hObj.clone()`](//hybrid-object.netlify.app/HybridObject.html#clone) | [`stucturedClone()`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) | the whole object |
-| [`hObj.cloneEntry()`](//hybrid-object.netlify.app/HybridObject.html#cloneEntry) | [`stucturedClone()`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) | any property of the object |
+| [`hObj.clone()`](//hybrid-object.netlify.app/HybridObject.html#clone) | [`stucturedClone()`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) | Clones the whole object |
+| [`hObj.cloneEntry()`](//hybrid-object.netlify.app/HybridObject.html#cloneEntry) | [`stucturedClone()`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) | Clones any property of the object |
 | [`hObj.entries()`](//hybrid-object.netlify.app/HybridObject.html#entries) | [`Object.entries()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) | static: `HybridObject.entries(hObj)`, instance: `hObj.entries()` |
 | [`hObj.every()`](//hybrid-object.netlify.app/HybridObject.html#every) | [`Array.every()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) | Identical |
 | [`hObj.filter()`](//hybrid-object.netlify.app/HybridObject.html#filter) | [`Array.filter()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) | Returns a _Hybrid Object_, chain `.finalValues()` to get only the values |

@@ -21,6 +21,7 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
         const nestedPropStr =
             propStr + (propStr ? "." : "") + (isArray ? `[${key}]` : key);
         if (isPlainObject(val) || Array.isArray(val)) {
+            flattened[nestedPropStr] = val;
             flattenObject(val, flattened, nestedPropStr);
         } else {
             flattened[nestedPropStr] = val;
