@@ -49,12 +49,12 @@
  * @instance
  * @returns {Boolean}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: 1,
  *     b: 2,
  *     c: 3
  * });
- * console.log(hObj.every(value => typeof value === 'number')); // true
+ * console.log(eObj.every(value => typeof value === 'number')); // true
  */
 const every = function (callbackFn, thisArg) {
     const entries = this.entries();

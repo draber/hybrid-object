@@ -7,7 +7,7 @@
  * @instance
  * @returns {undefined}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -15,7 +15,7 @@
  *        bb: 2
  *     }
  * }); 
- * hObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}
+ * eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}
  */
 const forEach = function (callbackFn, thisArg) {
     const entries = this.entries();

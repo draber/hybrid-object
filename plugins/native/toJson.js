@@ -5,7 +5,7 @@
  * @instance
  * @returns {String}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -13,8 +13,8 @@
  *        bb: 2
  *     }
  * });
- * console.log(hObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}
- * console.log(hObj.toJSON(true));
+ * console.log(eObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}
+ * console.log(eObj.toJSON(true));
  * // {
  * //     "a": {
  * //         "aa": 1

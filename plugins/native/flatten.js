@@ -38,7 +38,7 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
  * @instance
  * @returns {Object}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -46,7 +46,7 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
  *        bb: 2
  *     }
  * });
- * console.log(hObj.flatten()); // {a.aa:1,b.bb:2}
+ * console.log(eObj.flatten()); // {a.aa:1,b.bb:2}
  */
 const flatten = function () {
     return flattenObject(this);

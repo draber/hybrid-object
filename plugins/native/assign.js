@@ -6,7 +6,7 @@
  * @instance
  * @returns {ElasticObject}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: 1,
  *     b: 2
  * });
@@ -18,7 +18,7 @@
  *     d: 6,
  *     e: 7
  * }
- * console.log(hObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5, d: 6, e: 7 }
+ * console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5, d: 6, e: 7 }
  */
 const assign = function (...sources) {
     return Object.assign(this, ...sources);

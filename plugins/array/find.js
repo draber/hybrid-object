@@ -10,7 +10,7 @@ import {isPlainObject} from "lodash-es";
  * @instance
  * @returns {*}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: 1,
  *     b: {
  *         bb: 2
@@ -18,7 +18,7 @@ import {isPlainObject} from "lodash-es";
  *     c: 3,
  *     d: 'foo'
  * });
- * console.log(hObj.find(value => typeof value === 'number' && value > 1)); // 3
+ * console.log(eObj.find(value => typeof value === 'number' && value > 1)); // 3
  */
 const find = function (callbackFn, thisArg) {
     const flat = this.flatten();

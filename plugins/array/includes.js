@@ -7,7 +7,7 @@
  * @instance
  * @returns {Boolean}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -15,8 +15,8 @@
  *        bb: 2
  *     }
  * });
- * console.log(hObj.includes(1)); // true
- * console.log(hObj.includes(3)); // false
+ * console.log(eObj.includes(1)); // true
+ * console.log(eObj.includes(3)); // false
  */
 const includes = function (searchElement) {
     return Object.values(this.flatten()).includes(searchElement);

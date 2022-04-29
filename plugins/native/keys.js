@@ -1,11 +1,11 @@
 /**
- * Retrieve an array of all keys at the top level of the object, equivalent to `Object.keys(hObj)`.
+ * Retrieve an array of all keys at the top level of the object, equivalent to `Object.keys(eObj)`.
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
  * @memberof ElasticObject
  * @instance
  * @returns {Array}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -13,7 +13,7 @@
  *        bb: 2
  *     }
  * });
- * console.log(hObj.keys()); // ['a','b']
+ * console.log(eObj.keys()); // ['a','b']
  */
 const keys = function () {
     return Object.keys(this);

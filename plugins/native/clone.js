@@ -4,19 +4,19 @@
  * @instance
  * @returns {ElasticObject}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *         b: {
  *             c: 1
  *            }
  *         }
  * });
- * const clone = hObj.clone();
+ * const clone = eObj.clone();
  * console.log(clone.get('a.b.c')); // 1
- * console.log(hObj.get('a.b.c')); // 1
- * hObj.set('a.b.c', 2);
+ * console.log(eObj.get('a.b.c')); // 1
+ * eObj.set('a.b.c', 2);
  * console.log(clone.get('a.b.c')); // 1
- * console.log(hObj.get('a.b.c')); // 2
+ * console.log(eObj.get('a.b.c')); // 2
  */
 const clone = function () {
     return this.createInstance(structuredClone(this));

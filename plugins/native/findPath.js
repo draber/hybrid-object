@@ -8,7 +8,7 @@
  * @instance
  * @returns {String|undefined}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: 1,
  *     b: {
  *         bb: 2
@@ -16,7 +16,7 @@
  *     c: 3,
  *     d: 'foo'
  * });
- * console.log(hObj.findPath(value => typeof value === 'number' && value > 1)); // 'b.bb'
+ * console.log(eObj.findPath(value => typeof value === 'number' && value > 1)); // 'b.bb'
  */
 const findPath = function (callbackFn, thisArg) {
     const flat = this.flatten();

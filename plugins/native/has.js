@@ -9,7 +9,7 @@ import { has as _has } from "lodash-es";
  * @memberof ElasticObject
  * @instance
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -17,9 +17,9 @@ import { has as _has } from "lodash-es";
  *        bb: function() {}
  *     }
  * });
- * console.log(hObj.has('a.aa')); // true
- * console.log(hObj.has('c.cc')); // false
- * console.log(hObj.has('a')); // true
+ * console.log(eObj.has('a.aa')); // true
+ * console.log(eObj.has('c.cc')); // false
+ * console.log(eObj.has('a')); // true
  */
 const has = function (path) {
     return _has(this, path);

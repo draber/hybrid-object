@@ -5,7 +5,7 @@
  * @instance
  * @returns {Number}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -13,7 +13,7 @@
  *        bb: 2
  *     }
  * });
- * console.log(hObj.length()); // 2
+ * console.log(eObj.length()); // 2
  */
 const length = function () {
     return this.keys().length;

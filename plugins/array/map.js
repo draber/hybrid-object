@@ -8,7 +8,7 @@
  * @instance
  * @returns {ElasticObject}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -16,7 +16,7 @@
  *        bb: 2
  *     }
  * });
- * const newHObj = hObj.map((value, path) => value * 2);
+ * const newHObj = eObj.map((value, path) => value * 2);
  * console.log(newHObj.get('a.aa')); // 2
  */
 const map = function (callbackFn, thisArg) {

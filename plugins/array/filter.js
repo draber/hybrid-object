@@ -8,7 +8,7 @@
  * @instance
  * @returns {ElasticObject}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: 1,
  *     b: {
  *         bb: 2
@@ -16,7 +16,7 @@
  *     c: 3,
  *     d: 'foo'
  * });
- * console.log(hObj.filter(value => typeof value === 'number')); // {a:1,c:3}
+ * console.log(eObj.filter(value => typeof value === 'number')); // {a:1,c:3}
  */
 const filter = function (callbackFn, thisArg) {
     const filtered = this.createInstance({});

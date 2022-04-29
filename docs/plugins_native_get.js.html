@@ -54,7 +54,7 @@ import { isPlainObject } from "lodash-es";
  * @instance
  * @returns {*}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -62,12 +62,12 @@ import { isPlainObject } from "lodash-es";
  *        bb: function() {}
  *     }
  * });
- * console.log(hObj.get('a.aa')); // 1
- * console.log(hObj.get('b.bb')); // [Function: bb]
- * console.log(hObj.get('c.cc')); // undefined
- * console.log(hObj.get('c.cc', 'default')); // default
- * console.log(hObj.get('b.bb', () => 'default')); // [Function: bb]
- * console.log(hObj.get('a')); // {aa:1}
+ * console.log(eObj.get('a.aa')); // 1
+ * console.log(eObj.get('b.bb')); // [Function: bb]
+ * console.log(eObj.get('c.cc')); // undefined
+ * console.log(eObj.get('c.cc', 'default')); // default
+ * console.log(eObj.get('b.bb', () => 'default')); // [Function: bb]
+ * console.log(eObj.get('a')); // {aa:1}
  */
 const get = function (path, defaultValue) {
     let value = _get(this, path, defaultValue);

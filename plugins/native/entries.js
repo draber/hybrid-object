@@ -6,7 +6,7 @@
  * @instance
  * @returns {Array}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *         ab: 1
  *     },
@@ -14,7 +14,7 @@
  *         bb: 2
  *     }
  * });
- * console.log(hObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]
+ * console.log(eObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]
  */
 const entries = function () {
     return Object.entries(this);

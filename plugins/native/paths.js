@@ -4,7 +4,7 @@
  * @instance
  * @returns {Array}
  * @example
- * const hObj = new ElasticObject({
+ * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
@@ -12,7 +12,7 @@
  *        bb: 2
  *     }
  * });
- * console.log(hObj.paths()); // ['a.aa','b.bb']
+ * console.log(eObj.paths()); // ['a.aa','b.bb']
  */
 const paths = function () {
     return Object.keys(this.flatten());
