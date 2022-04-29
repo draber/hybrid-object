@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/native/entries.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,41 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/native/entries.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Returns an array of the object's own enumerable string-keyed property [key, value] pairs.
+ * This is modeled after the behavior of `Object.entries()` and _not_ `Array.entries()` which returns an iterator.
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+ * @memberof ElasticObject
+ * @instance
+ * @returns {Array}
+ * @example
+ * const hObj = new ElasticObject({
+ *     a: {
+ *         ab: 1
+ *     },
+ *     b: {
+ *         bb: 2
+ *     }
+ * });
+ * console.log(hObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]
+ */
+const entries = function () {
+    return Object.entries(this);
+};
 
-
-
-
-
-
-
-
-
-    
-
-
-
+export default entries;</code></pre>
+        </article>
+    </section>
 
 
 

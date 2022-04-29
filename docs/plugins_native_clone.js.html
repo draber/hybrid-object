@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/native/clone.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,43 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/native/clone.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Get a deep clone of an ElasticObject
+ * @memberof ElasticObject
+ * @instance
+ * @returns {ElasticObject}
+ * @example
+ * const hObj = new ElasticObject({
+ *     a: {
+ *         b: {
+ *             c: 1
+ *            }
+ *         }
+ * });
+ * const clone = hObj.clone();
+ * console.log(clone.get('a.b.c')); // 1
+ * console.log(hObj.get('a.b.c')); // 1
+ * hObj.set('a.b.c', 2);
+ * console.log(clone.get('a.b.c')); // 1
+ * console.log(hObj.get('a.b.c')); // 2
+ */
+const clone = function () {
+    return this.createInstance(structuredClone(this));
+};
 
-
-
-
-
-
-
-
-
-    
-
-
-
+export default clone;</code></pre>
+        </article>
+    </section>
 
 
 

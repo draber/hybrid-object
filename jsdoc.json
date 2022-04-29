@@ -4,7 +4,9 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["HybridObject.js", "readme.md"]
+        "include": ["."],   
+        "includePattern": ".+\\.js(doc|x)?$",
+        "exclude": [ "node_modules/" ]
     },
     "plugins": [
         "plugins/markdown"

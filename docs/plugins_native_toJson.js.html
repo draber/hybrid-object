@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/native/toJson.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,49 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/native/toJson.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Convert the object to JSON
+ * @param {Boolean} [pretty]
+ * @memberof ElasticObject
+ * @instance
+ * @returns {String}
+ * @example
+ * const hObj = new ElasticObject({
+ *     a: {
+ *        aa: 1
+ *     },
+ *     b: {
+ *        bb: 2
+ *     }
+ * });
+ * console.log(hObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}
+ * console.log(hObj.toJSON(true));
+ * // {
+ * //     "a": {
+ * //         "aa": 1
+ * //     },
+ * //     "b": {
+ * //         "bb": 2
+ * //     }
+ * // }
+ */
+const toJson = function (pretty = false) {
+    return JSON.stringify(this, null, pretty ? "\t" : null);
+};
 
-
-
-
-
-
-
-
-
-    
-
-
-
+export default toJson;</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert";
-import HybridObject from "../HybridObject.js";
+import ElasticObject from "../ElasticObject.js";
 import console from "a-nicer-console";
 
 const numbers = {
@@ -47,7 +47,7 @@ let dbStyle = {
 };
 
 test("clone", () => {
-    let original = new HybridObject(dbStyle);
+    let original = new ElasticObject(dbStyle);
     let clone = original.clone();
     assert.deepEqual(original, clone);
     original.set("a.aa.aaa", 2);
@@ -55,47 +55,47 @@ test("clone", () => {
 });
 
 test("cloneProperty", () => {
-    let hObj = new HybridObject(dbStyle);
-    let clonedProp = hObj.cloneProperty("a.aa.aaa");
-    assert.deepEqual(hObj.get("a.aa.aaa"), clonedProp);
-    hObj.set("a.aa.aaa", "new value");
-    assert.notDeepEqual(hObj.get("a.aa.aaa"), clonedProp);
+    let eObj = new ElasticObject(dbStyle);
+    let clonedProp = eObj.cloneProperty("a.aa.aaa");
+    assert.deepEqual(eObj.get("a.aa.aaa"), clonedProp);
+    eObj.set("a.aa.aaa", "new value");
+    assert.notDeepEqual(eObj.get("a.aa.aaa"), clonedProp);
 });
 
 test("cloneProperty vs. get", () => {
-    let hObj = new HybridObject(dbStyle);
-    let getProp = hObj.get("a");
+    let eObj = new ElasticObject(dbStyle);
+    let getProp = eObj.get("a");
     getProp.set("aa.aaa", "new value");
-    assert.deepEqual(hObj.get("a"), getProp);
+    assert.deepEqual(eObj.get("a"), getProp);
 });
 
 test("entries", () => {
-    let hObj = new HybridObject(primitives);
-    let entries = hObj.entries();
+    let eObj = new ElasticObject(primitives);
+    let entries = eObj.entries();
     assert.deepEqual(entries, Object.entries(primitives));
-    assert.deepEqual(entries, HybridObject.entries(primitives));
+    assert.deepEqual(entries, ElasticObject.entries(primitives));
 });
 
 test("every", () => {
-    const hObj = new HybridObject(numbers);
+    const eObj = new ElasticObject(numbers);
     assert.equal(
-        hObj.every((value) => value > 0),
+        eObj.every((value) => value > 0),
         true
     );
     assert.equal(
-        hObj.every((value) => value < 10),
+        eObj.every((value) => value < 10),
         true
     );
     assert.equal(
-        hObj.every((value) => value < 5),
+        eObj.every((value) => value < 5),
         false
     );
 });
 
 test("filter", () => {
-    const hObj = new HybridObject(numbers);
+    const eObj = new ElasticObject(numbers);
     assert.deepEqual(
-        hObj.filter((value) => value > 3),
+        eObj.filter((value) => value > 3),
         {
             d: 4,
             e: 5,
@@ -105,67 +105,67 @@ test("filter", () => {
 });
 
 test("filter, values only", () => {
-    const hObj = new HybridObject(numbers);
-    assert.deepEqual(hObj.filter((value) => value > 3).values(), [4, 5, 6]);
+    const eObj = new ElasticObject(numbers);
+    assert.deepEqual(eObj.filter((value) => value > 3).values(), [4, 5, 6]);
 });
 
 test("find", () => {
-    const hObj = new HybridObject(numbers);
+    const eObj = new ElasticObject(numbers);
     assert.equal(
-        hObj.find((value) => value > 3),
+        eObj.find((value) => value > 3),
         4
     );
     assert.equal(
-        hObj.find((value) => value < 5),
+        eObj.find((value) => value < 5),
         1
     );
     assert.equal(
-        hObj.find((value) => value > 100),
+        eObj.find((value) => value > 100),
         undefined
     );
 });
 
 test("findPath", () => {
-    const hObj = new HybridObject(dbStyle);
+    const eObj = new ElasticObject(dbStyle);
     assert.equal(
-        hObj.findPath((value) => value === 43),
+        eObj.findPath((value) => value === 43),
         "b.bb"
     );
     assert.equal(
-        hObj.findPath((value) => value > 50),
+        eObj.findPath((value) => value > 50),
         undefined
     );
 });
 
 test("flatten", () => {
-    const hObj = new HybridObject(primitives);
+    const eObj = new ElasticObject(primitives);
     const expected = '{"path":{"to":{"string":"string","integer":42,"float":3.14,"boolean":true,"null":null}},"path.to":{"string":"string","integer":42,"float":3.14,"boolean":true,"null":null},"path.to.string":"string","path.to.integer":42,"path.to.float":3.14,"path.to.boolean":true,"path.to.null":null}';
-    assert.deepEqual(JSON.stringify(hObj.flatten()), expected);    
+    assert.deepEqual(JSON.stringify(eObj.flatten()), expected);    
 });
 
 test("forEach", () => {
-    const hObj = new HybridObject(numbers);
+    const eObj = new ElasticObject(numbers);
     let values = [];
-    hObj.forEach((value) => {
+    eObj.forEach((value) => {
         values.push(value);
     });
     assert.deepEqual(values, [1, 2, 3, 4, 5, 6]);
 });
 
 test("get", () => {
-    const hObj = new HybridObject(primitives);
-    assert.equal(hObj.get("path.to.string"), "string");
-    assert.equal(hObj.get("path.to.integer"), 42);
-    assert.equal(hObj.get("path.to.float"), 3.14);
-    assert.equal(hObj.get("path.to.boolean"), true);
-    assert.equal(hObj.get("path.to.null"), null);
-    assert.equal(hObj.get("path.to.undefined"), undefined);
-    assert.equal(typeof hObj.get("path.to"), "object");
+    const eObj = new ElasticObject(primitives);
+    assert.equal(eObj.get("path.to.string"), "string");
+    assert.equal(eObj.get("path.to.integer"), 42);
+    assert.equal(eObj.get("path.to.float"), 3.14);
+    assert.equal(eObj.get("path.to.boolean"), true);
+    assert.equal(eObj.get("path.to.null"), null);
+    assert.equal(eObj.get("path.to.undefined"), undefined);
+    assert.equal(typeof eObj.get("path.to"), "object");
 });
 
 test("paths", () => {
-    const hObj = new HybridObject(primitives);
-    assert.deepEqual(hObj.paths(), [
+    const eObj = new ElasticObject(primitives);
+    assert.deepEqual(eObj.paths(), [
         "path",
         "path.to",
         "path.to.string",
@@ -178,23 +178,23 @@ test("paths", () => {
 });
 
 test("has", () => {
-    const hObj = new HybridObject(primitives);
-    assert.equal(hObj.has("path"), true);
-    assert.equal(hObj.has("path.to"), true);
-    assert.equal(hObj.has("path.to.string"), true);
-    assert.equal(hObj.has("path.to.nonExisting"), false);
+    const eObj = new ElasticObject(primitives);
+    assert.equal(eObj.has("path"), true);
+    assert.equal(eObj.has("path.to"), true);
+    assert.equal(eObj.has("path.to.string"), true);
+    assert.equal(eObj.has("path.to.nonExisting"), false);
 });
 
 test("includes", () => {
-    const hObj = new HybridObject(primitives);
-    assert.equal(hObj.includes("string"), true);
-    assert.equal(hObj.includes(true), true);
-    assert.equal(hObj.includes("nonExisting"), false);
+    const eObj = new ElasticObject(primitives);
+    assert.equal(eObj.includes("string"), true);
+    assert.equal(eObj.includes(true), true);
+    assert.equal(eObj.includes("nonExisting"), false);
 });
 
 test("keys", () => {
-    const hObj = new HybridObject(dbStyle);
-    assert.deepEqual(hObj.keys(), [
+    const eObj = new ElasticObject(dbStyle);
+    assert.deepEqual(eObj.keys(), [
         "a",
         "b",
         "c"
@@ -202,10 +202,10 @@ test("keys", () => {
 });
 
 test("length", () => {
-    let hObj = new HybridObject(dbStyle);
-    assert.equal(hObj.length(), 3);
-    hObj.set("random.path", "some Value");
-    assert.equal(hObj.length(), 4);
+    let eObj = new ElasticObject(dbStyle);
+    assert.equal(eObj.length(), 3);
+    eObj.set("random.path", "some Value");
+    assert.equal(eObj.length(), 4);
 });
 
 // test("values", () => {
@@ -255,7 +255,7 @@ test("length", () => {
 // });
 
 // test("set", () => {
-//     let po = new HybridObject(simple);
+//     let po = new ElasticObject(simple);
 //     po.set("path.to.string", "overWritten");
 //     po.set("path.to.new.string", "newString");
 //     assert.equal(po.get("path.to.string"), "overWritten");
@@ -263,7 +263,7 @@ test("length", () => {
 // });
 
 // test("size", () => {
-//     let po = new HybridObject(simple);
+//     let po = new ElasticObject(simple);
 //     assert.equal(po.size(), 1);
 //     po.set("another.path", "some Value");
 //     assert.equal(po.size(), 2);
@@ -285,7 +285,7 @@ test("length", () => {
 // });
 
 // test("unset", () => {
-//     let po = new HybridObject(simple);
+//     let po = new ElasticObject(simple);
 //     po.unset("path.to.string");
 //     assert.equal(po.get("path.to.string"), undefined);
 // });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/native/values.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,29 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/native/values.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Equivalent of Array.values, returns an array of all values
+ * @memberof ElasticObject
+ * @instance
+ * @returns {Array}
+ */
+const values = function () {
+    return Object.values(this);
+};
 
-
-
-
-
-
-
-
-
-    
-
-
-
+export default values;</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,7 +1,7 @@
 {
-    "name": "hybrid-object",
+    "name": "elastic-object",
     "version": "1.0.0",
-    "main": "HybridObject.js",
+    "main": "ElasticObject.js",
     "type": "module",
     "scripts": {
         "test": "node ./tests/tests.js",
@@ -12,7 +12,6 @@
         "minami": "^1.2.3"
     },
     "dependencies": {
-        "flatten-object": "file:modules/flatten-object",
         "lodash-es": "^4.17.21"
     }
 }

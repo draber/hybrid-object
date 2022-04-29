@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/array/includes.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,43 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/array/includes.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Checks whether the object includes `searchElement`.
+ * Equivalent of `Array.includes()`, though without the `fromIndex` argument.
+ * @param {*} searchElement The value to search for
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+ * @memberof ElasticObject
+ * @instance
+ * @returns {Boolean}
+ * @example
+ * const hObj = new ElasticObject({
+ *     a: {
+ *        aa: 1
+ *     },
+ *     b: {
+ *        bb: 2
+ *     }
+ * });
+ * console.log(hObj.includes(1)); // true
+ * console.log(hObj.includes(3)); // false
+ */
+const includes = function (searchElement) {
+    return Object.values(this.flatten()).includes(searchElement);
+};
 
-
-
-
-
-
-
-
-
-    
-
-
-
+export default includes;</code></pre>
+        </article>
+    </section>
 
 
 

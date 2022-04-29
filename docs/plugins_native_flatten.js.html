@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/native/flatten.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,74 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/native/flatten.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { isPlainObject } from "lodash-es";
 
+/**
+ * Retrieve all paths as an array in Lodash-style dot-notation
+ * @param {Object} obj
+ * @param {Array} [flattened]
+ * @param {String} [propStr]
+ * @ignore
+ * @returns {Object}
+ */
+const flattenObject = (obj, flattened = {}, propStr = "") => {
+    if (typeof obj === "undefined" || obj === null) {
+        return flattened;
+    }
+    const isArray = Array.isArray(obj);
+    if (isArray) {
+        obj = {
+            ...obj,
+        };
+    }
+    Object.entries(obj).forEach(([key, val]) => {
+        const nestedPropStr =
+            propStr + (propStr ? "." : "") + (isArray ? `[${key}]` : key);
+        if (isPlainObject(val) || Array.isArray(val)) {
+            flattened[nestedPropStr] = val;
+            flattenObject(val, flattened, nestedPropStr);
+        } else {
+            flattened[nestedPropStr] = val;
+        }
+    });
+    return flattened;
+};
 
+/**
+ * Retrieve a version of the object with all 'keys.flattened.to.paths'. This returns a regular object because its keys contain dots and it would require
+ * some sort of escaping strategy to make it work with `ElasticObject.get()`.
+ * @memberof ElasticObject
+ * @instance
+ * @returns {Object}
+ * @example
+ * const hObj = new ElasticObject({
+ *     a: {
+ *        aa: 1
+ *     },
+ *     b: {
+ *        bb: 2
+ *     }
+ * });
+ * console.log(hObj.flatten()); // {a.aa:1,b.bb:2}
+ */
+const flatten = function () {
+    return flattenObject(this);
+};
 
-
-
-
-
-
-
-    
-
-
-
+export default flatten;
+</code></pre>
+        </article>
+    </section>
 
 
 

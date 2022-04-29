@@ -1,10 +1,11 @@
-import isPlainObject from "lodash-es/isPlainObject.js";
+import { isPlainObject } from "lodash-es";
 
 /**
  * Retrieve all paths as an array in Lodash-style dot-notation
  * @param {Object} obj
  * @param {Array} [flattened]
  * @param {String} [propStr]
+ * @ignore
  * @returns {Object}
  */
 const flattenObject = (obj, flattened = {}, propStr = "") => {
@@ -30,4 +31,25 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
     return flattened;
 };
 
-export default flattenObject;
+/**
+ * Retrieve a version of the object with all 'keys.flattened.to.paths'. This returns a regular object because its keys contain dots and it would require
+ * some sort of escaping strategy to make it work with `ElasticObject.get()`.
+ * @memberof ElasticObject
+ * @instance
+ * @returns {Object}
+ * @example
+ * const hObj = new ElasticObject({
+ *     a: {
+ *        aa: 1
+ *     },
+ *     b: {
+ *        bb: 2
+ *     }
+ * });
+ * console.log(hObj.flatten()); // {a.aa:1,b.bb:2}
+ */
+const flatten = function () {
+    return flattenObject(this);
+};
+
+export default flatten;

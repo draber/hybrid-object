@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>plugins/native/unset.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,25 +29,45 @@
 
 <div id="main">
     
+    <h1 class="page-title">plugins/native/unset.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { unset as _unset } from "lodash-es";
 
+/**
+ * Removes the property at path of object.
+ * Uses Lodash's `unset()` method, but without the `object` argument.
+ * @param {Array|string} path The path of the property to unset
+ * @see https://lodash.com/docs/#unset
+ * @memberof ElasticObject
+ * @instance
+ * @returns {Boolean}
+ * @example
+ * const obj = new ElasticObject({
+ *     a: {
+ *         b: {
+ *             c: 1
+ *         }
+ * });
+ * obj.unset('a.b.c');
+ * obj.get('a.b.c'); // undefined
+ * obj.unset('a.b.d');
+ * obj.get('a.b.d'); // undefined
+ */
+const unset = function (path) {
+    return _unset(this, path);
+};
 
-
-
-
-
-
-
-
-    
-
-
-
+export default unset;</code></pre>
+        </article>
+    </section>
 
 
 
