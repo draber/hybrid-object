@@ -1,8 +1,6 @@
 # Elastic Object
 
-The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. 
-
-_Elastic Objects_ can be understood as an hybrid between an _Object_ and an _Array_ - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, it can be used like an object from the start. 
+The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. _Elastic Objects_ can be understood as an hybrid between an _Object_ and an _Array_ - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, it can be used like an object from the start. 
 
 ## Accessing Properties
 _Elastic Object_ offers an easy access to the properties of the object by using the `dotted.string.notation` pattern. This is not to be confused with JavaScript's [Dot Notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation). It relies on the well established [object-path](https://www.npmjs.com/package/object-path) library for this feature. Currently, `get()`, `set()`, `has()` and `unset()` are implemented by default.
@@ -22,7 +20,7 @@ npm i elastic-object
 
 ## Usage
 
-Below is a simple example of how to create a _Elastic Object_. For the methods, please refer to the [full documentation](//elastic-object.netlify.app/ElasticObject.html).
+Below is a simple example of how to create a _Elastic Object_. For the methods, please refer to the [full documentation](//elastic-object.netlify.app).
     
 ```javascript
 import ElasticObject from 'elastic-object'; // note that ElasticObject is implemented as ESM and not in CJS
