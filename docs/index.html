@@ -47,6 +47,191 @@
     
 
 
+    <section class="readme">
+        <article><h1>Elastic Object</h1>
+<p>The most common collection types in JavaScript are <em>Plain Objects</em>, <em>Arrays</em>, <em>Maps</em> and <em>Sets</em>. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections.</p>
+<p><em>Elastic Objects</em> can be understood as an hybrid between an <em>Object</em> and an <em>Array</em> - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, it can be used like an object from the start.</p>
+<h2>Accessing Properties</h2>
+<p><em>Elastic Object</em> offers an easy access to the properties of the object by using the <code>dotted.string.notation</code> pattern. This is not to be confused with JavaScript's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation">Dot Notation</a>. It relies on the well established <a href="https://www.npmjs.com/package/object-path">object-path</a> library for this feature. Currently, <code>get()</code>, <code>set()</code>, <code>has()</code> and <code>unset()</code> are implemented by default.</p>
+<h2>Convenience Methods</h2>
+<p>There are three methods that are provided by default: <code>toJson()</code>, <code>clone()</code> and <code>cloneProperty()</code>, simply because these are common tasks and it makes sense to have them available.</p>
+<h2>Adding Properties</h2>
+<p>You aren't limited to <em>Elastic Object's</em> native functionality. It has a plugin system that allows you pass an object of new methods as an argument to the constructor.</p>
+<h2>Installation</h2>
+<pre class="prettyprint source lang-bash"><code>npm i elastic-object
+</code></pre>
+<h2>Usage</h2>
+<p>Below is a simple example of how to create a <em>Elastic Object</em>. For the methods, please refer to the <a href="//elastic-object.netlify.app/ElasticObject.html">full documentation</a>.</p>
+<pre class="prettyprint source lang-javascript"><code>import ElasticObject from 'elastic-object'; // note that ElasticObject is implemented as ESM and not in CJS
+
+const eObj = new ElasticObject({
+    path: {
+        to: {
+            string: &quot;foo&quot;,
+            integer: 42
+        },
+    },
+    another: {
+        path: {
+            to: {
+                float: 3.14
+            }
+        }
+    }
+});
+</code></pre>
+<h2>Using an Elastic Object like a regular Object</h2>
+<p><em>Elastic Objects</em> are build on top of regular <em>Objects</em> and can be used in exactly the same way. You can access the properties in the above example with either <code>eObj.get('path.to.string')</code> or <code>eObj.path.to.string</code>. You can use all static methods such as <code>ElasticObject.keys(eObj)</code> or <code>ElasticObject.values(eObj)</code>; the more common ones, namely <code>Object.keys()</code>, <code>Object.values()</code>, <code>Object.entries()</code> and <code>Object.assign()</code> can also be called from withing the instance as <code>eObj.keys()</code> or <code>eObj.values()</code> etc.</p>
+<h2>Flattened version of the object</h2>
+<p>Many of the concepts of <em>Elastic Objects</em> are based on a flattened version of the object. The keys of this object are the paths of the properties, expressed in <code>dotted.string.notation</code>. The values are the values of these properties. These values can be of any type, excluding objects and arrays, as they would become part of the path. To distinguish between the top-level keys and values returned by <code>Object.keys()</code> resp. <code>Object.values()</code>,  and the keys and values of the flattened version, this document refers to the latter as <code>paths</code> and <code>finalValues</code>.</p>
+<p>The above example would be represented as:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+    &quot;path.to.string&quot;: &quot;foo&quot;,
+    &quot;path.to.integer&quot;: 42,
+    &quot;another.path.to.float&quot;: 3.14
+}
+</code></pre>
+<h2>Method overview</h2>
+<p>As described above, <em>Elastic Objects</em> borrow heavily from <em>Object</em>, <em>Array</em> and <em>Lodash</em>. The following table is an overview of the available methods, and what they have been inspired by.</p>
+<p>The links in the first column point to this documentation, the second column to the original documentation which you might also find helpful.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">External reference</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#assign"><code>eObj.assign()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"><code>Object.assign()</code></a></td>
+<td style="text-align:left">static: <code>ElasticObject.assign(eObj, rObj)</code>, instance: <code>eObj.assign(rObj)</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#clone"><code>eObj.clone()</code></a></td>
+<td style="text-align:left"><a href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone"><code>stucturedClone()</code></a></td>
+<td style="text-align:left">Clones the whole object</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#cloneEntry"><code>eObj.cloneEntry()</code></a></td>
+<td style="text-align:left"><a href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone"><code>stucturedClone()</code></a></td>
+<td style="text-align:left">Clones any property of the object</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#entries"><code>eObj.entries()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"><code>Object.entries()</code></a></td>
+<td style="text-align:left">static: <code>ElasticObject.entries(eObj)</code>, instance: <code>eObj.entries()</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#every"><code>eObj.every()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every"><code>Array.every()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#filter"><code>eObj.filter()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array.filter()</code></a></td>
+<td style="text-align:left">Returns a <em>Elastic Object</em>, chain <code>.finalValues()</code> to get only the values</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#finalValues"><code>eObj.finalValues()</code></a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Values of the flattened object</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#find"><code>eObj.find()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"><code>Array.find()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#findPath"><code>eObj.findPath()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex"><code>Array.findIndex()</code></a></td>
+<td style="text-align:left">Returns path in <code>dotted.string.notation</code> rather than an index</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#flatten"><code>eObj.flatten()</code></a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Flattened version of the object</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#forEach"><code>eObj.forEach()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#get"><code>eObj.get()</code></a></td>
+<td style="text-align:left"><a href="//lodash.com/docs/#get"><code>Lodash.get()</code></a></td>
+<td style="text-align:left">Same signature, but without the first argument <code>object</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#has"><code>eObj.has()</code></a></td>
+<td style="text-align:left"><a href="//lodash.com/docs/#has"><code>Lodash.has()</code></a></td>
+<td style="text-align:left">Same signature, but without the first argument <code>object</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#includes"><code>eObj.includes()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes"><code>Array.includes()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#keys"><code>eObj.keys()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a></td>
+<td style="text-align:left">static: <code>ElasticObject.keys(eObj)</code>, instance: <code>eObj.keys()</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#length"><code>eObj.length()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length"><code>Array.length()</code></a></td>
+<td style="text-align:left">In difference to <code>Array.length</code>, this is implemented as a function</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#map"><code>eObj.map()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array.map()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#paths"><code>eObj.paths()</code></a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Keys of the flattened object</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#reduce"><code>eObj.reduce()</code></a></td>
+<td style="text-align:left"><a href="//lodash.com/docs/#reduce"><code>Lodash.reduce()</code></a></td>
+<td style="text-align:left">Same signature, but without the first argument <code>object</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#set"><code>eObj.set()</code></a></td>
+<td style="text-align:left"><a href="//lodash.com/docs/#set"><code>Lodash.set()</code></a></td>
+<td style="text-align:left">Same signature, but without the first argument <code>object</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#some"><code>eObj.some()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some"><code>Array.some()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#sort"><code>eObj.sort()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"><code>Array.sort()</code></a></td>
+<td style="text-align:left">Identical</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#toJson"><code>eObj.toJson()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a></td>
+<td style="text-align:left">With boolean <code>pretty</code> argument for pretty-print</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#unset"><code>eObj.unset()</code></a></td>
+<td style="text-align:left"><a href="//lodash.com/docs/#unset"><code>Lodash.unset()</code></a></td>
+<td style="text-align:left">Same signature, but without the first argument <code>object</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#values"><code>eObj.values()</code></a></td>
+<td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values"><code>Object.values()</code></a></td>
+<td style="text-align:left">static: <code>ElasticObject.values(eObj)</code>, instance: <code>eObj.xalues()</code></td>
+</tr>
+</tbody>
+</table></article>
+    </section>
+
 
 
 
@@ -57,7 +242,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Fri Apr 29 2022 21:23:12 GMT+0200 (Central European Summer Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sat Apr 30 2022 10:18:58 GMT+0200 (Central European Summer Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

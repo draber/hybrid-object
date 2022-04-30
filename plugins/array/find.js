@@ -1,4 +1,4 @@
-import {isPlainObject} from "lodash-es";
+import { isPlainObject } from 'is-plain-object';
 
 /**
  * Returns the first element that satisfies the provided callback function.

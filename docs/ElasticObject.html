@@ -2105,7 +2105,7 @@ eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code><
 
     
 
-    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path, defaultValue<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path)</span><span class="type-signature"> &rarr; {*}</span></h4>
 
     
 
@@ -2114,9 +2114,7 @@ eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code><
 <div class="description">
     <p>Gets the value at path of object.</p>
 <ul>
-<li>If the resolved value is undefined and <code>defaultValue</code> is provided, <code>defaultValue</code> will be returned, undefined otherwise.</li>
-<li>If the resolved value is a plain object, it will be converted to a <code>ElasticObject</code>.
-Uses Lodash's <code>get()</code> method, but without the <code>object</code> argument.</li>
+<li>If the resolved value is a plain object, it will be converted to a <code>ElasticObject</code>.</li>
 </ul>
 </div>
 
@@ -2153,19 +2151,12 @@ Uses Lodash's <code>get()</code> method, but without the <code>object</code> arg
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_get.js.html">plugins/native/get.js</a>, <a href="plugins_native_get.js.html#line31">line 31</a>
+        <a href="plugins_native_get.js.html">plugins/native/get.js</a>, <a href="plugins_native_get.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#get">https://lodash.com/docs/#get</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -2191,8 +2182,6 @@ Uses Lodash's <code>get()</code> method, but without the <code>object</code> arg
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -2222,55 +2211,11 @@ Uses Lodash's <code>get()</code> method, but without the <code>object</code> arg
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
             <td class="description last">
                 <p>The path of the property to get</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>defaultValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>*</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>The default value to return if the path doesn't exist</p>
                 
             </td>
         </tr>
@@ -2349,8 +2294,7 @@ console.log(eObj.get('a')); // {aa:1}</code></pre>
 
 
 <div class="description">
-    <p>Checks if path is a direct property of object.
-Uses Lodash's <code>has()</code> method, but without the <code>object</code> argument.</p>
+    <p>Checks if path is a direct property of object.</p>
 </div>
 
 
@@ -2386,19 +2330,12 @@ Uses Lodash's <code>has()</code> method, but without the <code>object</code> arg
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_has.js.html">plugins/native/has.js</a>, <a href="plugins_native_has.js.html#line24">line 24</a>
+        <a href="plugins_native_has.js.html">plugins/native/has.js</a>, <a href="plugins_native_has.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#has">https://lodash.com/docs/#has</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -3578,8 +3515,7 @@ console.log(result); // 6</code></pre>
 
 <div class="description">
     <p>Sets the value at path of object. If a portion of path doesn't exist, it will be created.
-Arrays are created for missing index properties while objects are created for all other missing properties.
-Uses Lodash's <code>set()</code> method, but without the <code>object</code> argument.</p>
+Arrays are created for missing index properties while objects are created for all other missing properties.</p>
 </div>
 
 
@@ -3615,19 +3551,12 @@ Uses Lodash's <code>set()</code> method, but without the <code>object</code> arg
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_set.js.html">plugins/native/set.js</a>, <a href="plugins_native_set.js.html#line28">line 28</a>
+        <a href="plugins_native_set.js.html">plugins/native/set.js</a>, <a href="plugins_native_set.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#set">https://lodash.com/docs/#set</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -4410,8 +4339,7 @@ console.log(eObj.toJSON(true));
 
 
 <div class="description">
-    <p>Removes the property at path of object.
-Uses Lodash's <code>unset()</code> method, but without the <code>object</code> argument.</p>
+    <p>Removes the property at path of object.</p>
 </div>
 
 
@@ -4447,19 +4375,12 @@ Uses Lodash's <code>unset()</code> method, but without the <code>object</code> a
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_unset.js.html">plugins/native/unset.js</a>, <a href="plugins_native_unset.js.html#line23">line 23</a>
+        <a href="plugins_native_unset.js.html">plugins/native/unset.js</a>, <a href="plugins_native_unset.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#unset">https://lodash.com/docs/#unset</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -6793,7 +6714,7 @@ eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code><
 
     
 
-    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path, defaultValue<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path)</span><span class="type-signature"> &rarr; {*}</span></h4>
 
     
 
@@ -6802,9 +6723,7 @@ eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code><
 <div class="description">
     <p>Gets the value at path of object.</p>
 <ul>
-<li>If the resolved value is undefined and <code>defaultValue</code> is provided, <code>defaultValue</code> will be returned, undefined otherwise.</li>
-<li>If the resolved value is a plain object, it will be converted to a <code>ElasticObject</code>.
-Uses Lodash's <code>get()</code> method, but without the <code>object</code> argument.</li>
+<li>If the resolved value is a plain object, it will be converted to a <code>ElasticObject</code>.</li>
 </ul>
 </div>
 
@@ -6841,19 +6760,12 @@ Uses Lodash's <code>get()</code> method, but without the <code>object</code> arg
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_get.js.html">plugins/native/get.js</a>, <a href="plugins_native_get.js.html#line31">line 31</a>
+        <a href="plugins_native_get.js.html">plugins/native/get.js</a>, <a href="plugins_native_get.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#get">https://lodash.com/docs/#get</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -6879,8 +6791,6 @@ Uses Lodash's <code>get()</code> method, but without the <code>object</code> arg
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -6910,55 +6820,11 @@ Uses Lodash's <code>get()</code> method, but without the <code>object</code> arg
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
             <td class="description last">
                 <p>The path of the property to get</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>defaultValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>*</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>The default value to return if the path doesn't exist</p>
                 
             </td>
         </tr>
@@ -7037,8 +6903,7 @@ console.log(eObj.get('a')); // {aa:1}</code></pre>
 
 
 <div class="description">
-    <p>Checks if path is a direct property of object.
-Uses Lodash's <code>has()</code> method, but without the <code>object</code> argument.</p>
+    <p>Checks if path is a direct property of object.</p>
 </div>
 
 
@@ -7074,19 +6939,12 @@ Uses Lodash's <code>has()</code> method, but without the <code>object</code> arg
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_has.js.html">plugins/native/has.js</a>, <a href="plugins_native_has.js.html#line24">line 24</a>
+        <a href="plugins_native_has.js.html">plugins/native/has.js</a>, <a href="plugins_native_has.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#has">https://lodash.com/docs/#has</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -8266,8 +8124,7 @@ console.log(result); // 6</code></pre>
 
 <div class="description">
     <p>Sets the value at path of object. If a portion of path doesn't exist, it will be created.
-Arrays are created for missing index properties while objects are created for all other missing properties.
-Uses Lodash's <code>set()</code> method, but without the <code>object</code> argument.</p>
+Arrays are created for missing index properties while objects are created for all other missing properties.</p>
 </div>
 
 
@@ -8303,19 +8160,12 @@ Uses Lodash's <code>set()</code> method, but without the <code>object</code> arg
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_set.js.html">plugins/native/set.js</a>, <a href="plugins_native_set.js.html#line28">line 28</a>
+        <a href="plugins_native_set.js.html">plugins/native/set.js</a>, <a href="plugins_native_set.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#set">https://lodash.com/docs/#set</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -9098,8 +8948,7 @@ console.log(eObj.toJSON(true));
 
 
 <div class="description">
-    <p>Removes the property at path of object.
-Uses Lodash's <code>unset()</code> method, but without the <code>object</code> argument.</p>
+    <p>Removes the property at path of object.</p>
 </div>
 
 
@@ -9135,19 +8984,12 @@ Uses Lodash's <code>unset()</code> method, but without the <code>object</code> a
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins_native_unset.js.html">plugins/native/unset.js</a>, <a href="plugins_native_unset.js.html#line23">line 23</a>
+        <a href="plugins_native_unset.js.html">plugins/native/unset.js</a>, <a href="plugins_native_unset.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://lodash.com/docs/#unset">https://lodash.com/docs/#unset</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -9390,7 +9232,7 @@ obj.get('a.b.d'); // undefined</code></pre>
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Fri Apr 29 2022 21:23:12 GMT+0200 (Central European Summer Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sat Apr 30 2022 10:18:58 GMT+0200 (Central European Summer Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

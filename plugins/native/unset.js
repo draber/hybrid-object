@@ -1,10 +1,8 @@
-import { unset as _unset } from "lodash-es";
+import objectPath from "object-path";
 
 /**
  * Removes the property at path of object.
- * Uses Lodash's `unset()` method, but without the `object` argument.
  * @param {Array|string} path The path of the property to unset
- * @see https://lodash.com/docs/#unset
  * @memberof ElasticObject
  * @instance
  * @returns {Boolean}
@@ -21,7 +19,7 @@ import { unset as _unset } from "lodash-es";
  * obj.get('a.b.d'); // undefined
  */
 const unset = function (path) {
-    return _unset(this, path);
+    return objectPath.del(this, path);
 };
 
 export default unset;

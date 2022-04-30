@@ -1,7 +1,7 @@
-import { isPlainObject } from "lodash-es";
+import { isPlainObject } from 'is-plain-object';
 
 /**
- * Retrieve all paths as an array in Lodash-style dot-notation
+ * Retrieve all paths as an array in `dotted-string-notation`
  * @param {Object} obj
  * @param {Array} [flattened]
  * @param {String} [propStr]
@@ -20,7 +20,7 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
     }
     Object.entries(obj).forEach(([key, val]) => {
         const nestedPropStr =
-            propStr + (propStr ? "." : "") + (isArray ? `[${key}]` : key);
+            propStr + (propStr ? "." : "") + key;
         if (isPlainObject(val) || Array.isArray(val)) {
             flattened[nestedPropStr] = val;
             flattenObject(val, flattened, nestedPropStr);

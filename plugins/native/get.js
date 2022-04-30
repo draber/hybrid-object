@@ -1,14 +1,10 @@
-import { get as _get } from "lodash-es";
-import { isPlainObject } from "lodash-es";
+import { isPlainObject } from 'is-plain-object';
+import objectPath from "object-path";
 
 /**
  * Gets the value at path of object.
- * - If the resolved value is undefined and `defaultValue` is provided, `defaultValue` will be returned, undefined otherwise.
  * - If the resolved value is a plain object, it will be converted to a `ElasticObject`.
- * Uses Lodash's `get()` method, but without the `object` argument.
  * @param {Array|string} path The path of the property to get
- * @param {*} [defaultValue] The default value to return if the path doesn't exist
- * @see https://lodash.com/docs/#get
  * @memberof ElasticObject
  * @instance
  * @returns {*}
@@ -28,8 +24,8 @@ import { isPlainObject } from "lodash-es";
  * console.log(eObj.get('b.bb', () => 'default')); // [Function: bb]
  * console.log(eObj.get('a')); // {aa:1}
  */
-const get = function (path, defaultValue) {
-    let value = _get(this, path, defaultValue);
+const get = function(path) {
+    const value = objectPath.get(this, path);
     return isPlainObject(value) ? this.createInstance(value) : value;
 };
 

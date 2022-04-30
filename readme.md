@@ -2,11 +2,17 @@
 
 The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. 
 
-To set a new property on `another.deeply.nested.path` of an _Object_, you'll have to check on every step along the way if the current level exists and to create it if it doesn't. _Lodash_ is one of the libraries that with [`Lodash.get()`](https://lodash.com/docs/#get), [`Lodash.set()`](https://lodash.com/docs/#set), [`Lodash.unset()`](https://lodash.com/docs/#unset) or [`Lodash.has()`](https://lodash.com/docs/#has) offers an easy way to access object properties. It uses a `dotted.string.notation` pattern (see Lodash's [`get()`](https://lodash.com/docs/#get) docs for example). This is not to be confused with JavaScript's [Dot Notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation).
+_Elastic Objects_ can be understood as an hybrid between an _Object_ and an _Array_ - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, it can be used like an object from the start. 
 
-While _Objects_ are great at storing complex data structures, they lack all those convenient functions that _Arrays_, _Maps_ or _Sets_ have. They rely on external code to perform common tasks such as looping or filtering to name but a few.
+## Accessing Properties
+_Elastic Object_ offers an easy access to the properties of the object by using the `dotted.string.notation` pattern. This is not to be confused with JavaScript's [Dot Notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation). It relies on the well established [object-path](https://www.npmjs.com/package/object-path) library for this feature. Currently, `get()`, `set()`, `has()` and `unset()` are implemented by default.
 
-So how about building an object type that overcomes these drawbacks? This is exactly what _Elastic Object_ is made for; a plain object with built-in _Map resp. Set_-style `set()` and `get()` functions, that support Lodash-syntax. On top of it features dozens of _Array_-style methods such as `forEach()`, `map()` or `filter()`. Finally, it includes common methods like `clone()` and `toJson()` and all of that without losing the original _Object_ functionality.
+## Convenience Methods
+There are three methods that are provided by default: `toJson()`, `clone()` and `cloneProperty()`, simply because these are common tasks and it makes sense to have them available.
+
+## Adding Properties
+You aren't limited to _Elastic Object's_ native functionality. It has a plugin system that allows you pass an object of new methods as an argument to the constructor. 
+
 
 ## Installation
 
