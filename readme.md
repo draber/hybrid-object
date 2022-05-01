@@ -47,7 +47,7 @@ eObj.forEach((value, key) => {
 ### Standard object methods
 _Elastic Objects_ are extensions of plain objects so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:
 - Static methods, such as `assign()` or `create()`, which you would expect to return regular objects, will return elastic objects instead.
-- `keys()`, `values()`, `entries()` and `assign()` are also available as instance methods. When you use them in this way, they refer to `this`. In the case of `assign()`, `this` is the first argument.
+- `keys()`, `values()`, `entries()`, `assign()` and `create()` are also available as instance methods. When you use them in this way, they refer to `this`. In the case of `assign()`, `this` is the first argument.
 
 ### Accessors
 Accessing properties with `set('path.to.property')` is a common implementation pattern, but it's not native to JavaScript. With `set()`, `get()`, `has()` and `unset()` _Elastic Object_ has built-in support for this pattern. To avoid confusion with JavaScript's native [dot notation](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation), this document uses the term `dotted.string.notation` instead. The feature is powered by Sindre Sorhus' [dot-prop](//www.npmjs.com/package/dot-prop) library.
