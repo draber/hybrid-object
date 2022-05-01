@@ -1,6 +1,6 @@
 # Elastic Object
 
-The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. You can look at _Elastic Objects_ as a elastic between an _Object_ and an _Array_ - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, you can use it like an object from the start. 
+_Plain Objects_ are great for handling data, but they can be a bit clunky. This is where _Elastic Object_ comes in. On top of the regular object functionality, it features `get()` and `set()` with `dotted.string.notation`, as well as loops and all the other good stuff you already know from _Arrays_, _Maps_ or _Sets_. It is  easily extendable in case you want to add your own methods. And with ~6kb it's not too big either.
 
 ## Installation
 
@@ -45,7 +45,7 @@ eObj.forEach((value, key) => {
 ## Features
 
 ### Standard object methods
-_Elastic Objects_ are extensions of plain objects so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:
+_Elastic Objects_ are extensions of plain objects, so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:
 - Static methods, such as `assign()` or `create()`, which you would expect to return regular objects, will return elastic objects instead.
 - `keys()`, `values()`, `entries()`, `assign()` and `create()` are also available as instance methods. When you use them in this way, they refer to `this`. In the case of `assign()`, `this` is the first argument.
 
@@ -53,16 +53,20 @@ _Elastic Objects_ are extensions of plain objects so everything you can do with 
 Accessing properties with `set('path.to.property')` is a common implementation pattern, but it's not native to JavaScript. With `set()`, `get()`, `has()` and `unset()` _Elastic Object_ has built-in support for this pattern. To avoid confusion with JavaScript's native [dot notation](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation), this document uses the term `dotted.string.notation` instead. The feature is powered by Sindre Sorhus' [dot-prop](//www.npmjs.com/package/dot-prop) library.
 
 ### Array methods
-Not all array methods make sense on an object, but `every()`, `filter()`, `find()`, `forEach()`, `includes()`, `length()`, `map()`, `reduce()`, `reduceRight()`, `some()` and `sort()` certainly do and _Elastic Object_ has them all. There is also `findPath()` as an equivalent of `findIndex()`. All methods work pretty much like their array counterparts, which means they generally refer to the top level of the object. `findPath()`, however, searches all levels as long as the values are either arrays or objects. Note that `length()` is, contrary to the array implementation, built out as a function.
+Not all array methods make sense on an object, but `every()`, `filter()`, `find()`, `forEach()`, `includes()`, `length()`, `map()`, `reduce()`, `reduceRight()`, `some()` and `sort()` certainly do; _Elastic Object_ has them all. There is also `findPath()` as an equivalent of `findIndex()`. All methods work pretty much like their array counterparts, which means they generally refer to the top level of the object. `findPath()`, however, searches all levels as long as the values are either arrays or objects. Note that `length()` is, contrary to the array implementation, built out as a function.
 
 ### Other methods
 `toJson()`, `clone()` and `cloneProperty()` cover common tasks and it makes sense to have them available. The `flatten()` method finally returns a version of the object with all nested paths converted to strings in `dotted.string.notation`. The above example as a flat object looks like this:
 
 ```javascript
 {
-    "path.to.string": "foo",
-    "path.to.integer": 42,
-    "another.path.to.float": 3.14
+    'path': {to: {…}}
+    'path.to': {string: 'string', integer: 42, float: 3.14, boolean: true, null: null}
+    'path.to.boolean': true
+    'path.to.float': 3.14
+    'path.to.integer': 42
+    'path.to.null': null
+    'path.to.string': "string"
 }
 ```
 
@@ -75,7 +79,7 @@ eObj.get('path.to.a.plain.object').filter(value => value > 3).values();
 ```
 
 ### Adding properties
-You aren't limited to _Elastic Object's_ native functionality. It has a plugin system that allows you to pass an object of new methods as an argument to the constructor. `/plugins/array.js` and `/plugins/native.js` are loaded by default and you can check out these modules if you wish to add your own set of methods. Make sure that they implement the chainability paradigm as mentioned above.
+You aren't limited to _Elastic Object's_ native functionality. It has a plugin system that allows you to pass an object of new methods as an argument to the constructor. `/plugins/array.js` and `/plugins/native.js` are loaded by default and you can check out these modules if you wish to add your own set of methods. Methods are added to the prototype chain, which may make them available project-wide depending on your implementation . Make sure that they implement the chainability paradigm as mentioned above.
 
 Below is a short example of how this works. Keep in mind to use regular function syntax to ensure access to `this`.
 

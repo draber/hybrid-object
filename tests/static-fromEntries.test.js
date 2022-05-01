@@ -2,7 +2,7 @@ import ElasticObject from "../ElasticObject.js";
 import {
     entryMap,
     plugins
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("static-fromEntries", () => {
     const eObj1 = ElasticObject.fromEntries(entryMap);

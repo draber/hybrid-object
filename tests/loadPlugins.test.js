@@ -2,7 +2,7 @@ import ElasticObject from "../ElasticObject.js";
 import {
     numbers,
     plugins
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("loadPlugins", () => {
     const eObj = new ElasticObject(numbers);

@@ -1,5 +1,5 @@
 import ElasticObject from "../ElasticObject.js";
-import { unsorted, unsortedNested } from "./assests/data.js";
+import { unsorted, unsortedNested } from "../data/data.js";
 
 test("sort w/o callback", () => {
     const eObj = new ElasticObject(unsorted);

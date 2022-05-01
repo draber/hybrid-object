@@ -1,4 +1,4 @@
-import { isPlainObject } from 'is-plain-object';
+import { isPlainObject } from "is-plain-object";
 
 /**
  * Retrieve a flattened version of an object with all paths on all levels in `dotted-string-notation`

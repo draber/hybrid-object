@@ -19,9 +19,9 @@
  * console.log(result); // true
  */
 const some = function (callbackFn, thisArg) {
-    const flat = this.flatten();
-    for (let [path, value] of Object.entries(flat)) {
-        if (callbackFn(value, path, flat, thisArg)) {
+    const entries = this.entries();
+    for (let [path, value] of entries) {
+        if (callbackFn(value, path, entries, thisArg)) {
             return true;
         }
     }

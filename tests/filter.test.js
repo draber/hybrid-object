@@ -1,7 +1,7 @@
 import ElasticObject from "../ElasticObject.js";
 import {
     numbers
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("filter", () => {
     const eObj = new ElasticObject(numbers);

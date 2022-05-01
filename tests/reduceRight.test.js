@@ -1,7 +1,7 @@
 import ElasticObject from "../ElasticObject.js";
 import {
     ltr,
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("reduceRight", () => {
     const eObj = new ElasticObject(ltr);

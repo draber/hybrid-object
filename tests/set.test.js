@@ -1,7 +1,7 @@
 import ElasticObject from "../ElasticObject.js";
 import {
     primitives
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("set", () => {
     const eObj = new ElasticObject(primitives);

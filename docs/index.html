@@ -49,7 +49,7 @@
 
     <section class="readme">
         <article><h1>Elastic Object</h1>
-<p>The most common collection types in JavaScript are <em>Plain Objects</em>, <em>Arrays</em>, <em>Maps</em> and <em>Sets</em>. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. You can look at <em>Elastic Objects</em> as a elastic between an <em>Object</em> and an <em>Array</em> - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, you can use it like an object from the start.</p>
+<p><em>Plain Objects</em> are great for handling data, but they can be a bit clunky. This is where <em>Elastic Object</em> comes in. On top of the regular object functionality, it features <code>get()</code> and <code>set()</code> with <code>dotted.string.notation</code>, as well as loops and all the other good stuff you already know from <em>Arrays</em>, <em>Maps</em> or <em>Sets</em>. It is  easily extendable in case you want to add your own methods. And with ~6kb it's not too big either.</p>
 <h2>Installation</h2>
 <pre class="prettyprint source lang-bash"><code>npm i elastic-object
 </code></pre>
@@ -85,7 +85,7 @@ eObj.forEach((value, key) => {
 </code></pre>
 <h2>Features</h2>
 <h3>Standard object methods</h3>
-<p><em>Elastic Objects</em> are extensions of plain objects so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:</p>
+<p><em>Elastic Objects</em> are extensions of plain objects, so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:</p>
 <ul>
 <li>Static methods, such as <code>assign()</code> or <code>create()</code>, which you would expect to return regular objects, will return elastic objects instead.</li>
 <li><code>keys()</code>, <code>values()</code>, <code>entries()</code>, <code>assign()</code> and <code>create()</code> are also available as instance methods. When you use them in this way, they refer to <code>this</code>. In the case of <code>assign()</code>, <code>this</code> is the first argument.</li>
@@ -93,13 +93,17 @@ eObj.forEach((value, key) => {
 <h3>Accessors</h3>
 <p>Accessing properties with <code>set('path.to.property')</code> is a common implementation pattern, but it's not native to JavaScript. With <code>set()</code>, <code>get()</code>, <code>has()</code> and <code>unset()</code> <em>Elastic Object</em> has built-in support for this pattern. To avoid confusion with JavaScript's native <a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation">dot notation</a>, this document uses the term <code>dotted.string.notation</code> instead. The feature is powered by Sindre Sorhus' <a href="//www.npmjs.com/package/dot-prop">dot-prop</a> library.</p>
 <h3>Array methods</h3>
-<p>Not all array methods make sense on an object, but <code>every()</code>, <code>filter()</code>, <code>find()</code>, <code>forEach()</code>, <code>includes()</code>, <code>length()</code>, <code>map()</code>, <code>reduce()</code>, <code>reduceRight()</code>, <code>some()</code> and <code>sort()</code> certainly do and <em>Elastic Object</em> has them all. There is also <code>findPath()</code> as an equivalent of <code>findIndex()</code>. All methods work pretty much like their array counterparts, which means they generally refer to the top level of the object. <code>findPath()</code>, however, searches all levels as long as the values are either arrays or objects. Note that <code>length()</code> is, contrary to the array implementation, built out as a function.</p>
+<p>Not all array methods make sense on an object, but <code>every()</code>, <code>filter()</code>, <code>find()</code>, <code>forEach()</code>, <code>includes()</code>, <code>length()</code>, <code>map()</code>, <code>reduce()</code>, <code>reduceRight()</code>, <code>some()</code> and <code>sort()</code> certainly do; <em>Elastic Object</em> has them all. There is also <code>findPath()</code> as an equivalent of <code>findIndex()</code>. All methods work pretty much like their array counterparts, which means they generally refer to the top level of the object. <code>findPath()</code>, however, searches all levels as long as the values are either arrays or objects. Note that <code>length()</code> is, contrary to the array implementation, built out as a function.</p>
 <h3>Other methods</h3>
 <p><code>toJson()</code>, <code>clone()</code> and <code>cloneProperty()</code> cover common tasks and it makes sense to have them available. The <code>flatten()</code> method finally returns a version of the object with all nested paths converted to strings in <code>dotted.string.notation</code>. The above example as a flat object looks like this:</p>
 <pre class="prettyprint source lang-javascript"><code>{
-    &quot;path.to.string&quot;: &quot;foo&quot;,
-    &quot;path.to.integer&quot;: 42,
-    &quot;another.path.to.float&quot;: 3.14
+    'path': {to: {…}}
+    'path.to': {string: 'string', integer: 42, float: 3.14, boolean: true, null: null}
+    'path.to.boolean': true
+    'path.to.float': 3.14
+    'path.to.integer': 42
+    'path.to.null': null
+    'path.to.string': &quot;string&quot;
 }
 </code></pre>
 <h3>Chainability</h3>
@@ -108,7 +112,7 @@ eObj.forEach((value, key) => {
 eObj.get('path.to.a.plain.object').filter(value => value > 3).values();
 </code></pre>
 <h3>Adding properties</h3>
-<p>You aren't limited to <em>Elastic Object's</em> native functionality. It has a plugin system that allows you to pass an object of new methods as an argument to the constructor. <code>/plugins/array.js</code> and <code>/plugins/native.js</code> are loaded by default and you can check out these modules if you wish to add your own set of methods. Make sure that they implement the chainability paradigm as mentioned above.</p>
+<p>You aren't limited to <em>Elastic Object's</em> native functionality. It has a plugin system that allows you to pass an object of new methods as an argument to the constructor. <code>/plugins/array.js</code> and <code>/plugins/native.js</code> are loaded by default and you can check out these modules if you wish to add your own set of methods. Methods are added to the prototype chain, which may make them available project-wide depending on your implementation . Make sure that they implement the chainability paradigm as mentioned above.</p>
 <p>Below is a short example of how this works. Keep in mind to use regular function syntax to ensure access to <code>this</code>.</p>
 <pre class="prettyprint source lang-javascript"><code>const myPlugins = {
     methodA: function() {        
@@ -333,7 +337,7 @@ const foo = function() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sun May 01 2022 20:19:06 GMT+0200 (Central European Summer Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sun May 01 2022 21:54:38 GMT+0200 (Central European Summer Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -1,7 +1,7 @@
 import ElasticObject from "../ElasticObject.js";
 import {
     dbStyle
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("clone", () => {
     const eObj = new ElasticObject(dbStyle);

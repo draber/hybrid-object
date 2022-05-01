@@ -2,7 +2,7 @@ import ElasticObject from "../ElasticObject.js";
 import {
     primitives,
     numbers
-} from "./assests/data.js";
+} from "../data/data.js";
 
 test("assign", () => {
     const eObj = new ElasticObject(primitives);
