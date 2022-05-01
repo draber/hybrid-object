@@ -1,4 +1,4 @@
-import objectPath from "object-path";
+import { hasProperty } from "dot-prop";
 
 /**
  * Checks if path is a direct property of object.
@@ -20,7 +20,7 @@ import objectPath from "object-path";
  * console.log(eObj.has('a')); // true
  */
 const has = function (path) {
-    return typeof objectPath.get(this, path) !== 'undefined';
+    return hasProperty(this, path);
 };
 
 export default has;

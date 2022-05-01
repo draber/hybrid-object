@@ -5,7 +5,7 @@ import cleanup from "rollup-plugin-cleanup";
 import { terser } from "rollup-plugin-terser";
 
 
-const plugins = [resolve(), commonjs(), cleanup()/*, terser()*/];
+const plugins = [resolve(), commonjs(), cleanup(), terser()];
 
 export default [
     {

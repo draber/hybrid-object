@@ -1,9 +1,11 @@
+import { isPlainObject } from "is-plain-object";
+
 /**
  * Returns a deep clone of a particular property
  * @param {String} path
  * @memberof ElasticObject
  * @instance
- * @returns {*}
+ * @returns {*} ElasticObject if possible, otherwise the value
  * @example
  * const eObj = new ElasticObject({
  *     a: {
@@ -20,7 +22,8 @@
  * console.log(eObj.get('a.b')); // 2
  */
 const cloneProperty = function (path) {
-    return structuredClone(this.get(path));
+    const value = structuredClone(this.get(path));
+    return isPlainObject(value) ? this.create(value) : value;
 };
 
 export default cloneProperty;

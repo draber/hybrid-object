@@ -28,7 +28,7 @@ const sort = function (compareFn) {
             return valueA - valueB;
         }
     );
-    return this.createInstance(
+    return this.create(
         sorted.reduce((accumulator, [path, value]) => {
             set(accumulator, path, value);
             return accumulator;

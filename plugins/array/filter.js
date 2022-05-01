@@ -1,5 +1,5 @@
 /**
- * Returns a ElasticObject with all entries that satisfy the provided callback function.
+ * Returns an ElasticObject with all entries that satisfy the provided callback function.
  * Equivalent of `Array.filter()`.
  * @param {Function} callbackFn Args: value, path, entries [, thisArg]
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
@@ -19,7 +19,7 @@
  * console.log(eObj.filter(value => typeof value === 'number')); // {a:1,c:3}
  */
 const filter = function (callbackFn, thisArg) {
-    const filtered = this.createInstance({});
+    const filtered = this.create({});
     const entries = this.entries();
     for (let [path, value] of entries) {
         if (callbackFn(value, path, entries, thisArg)) {

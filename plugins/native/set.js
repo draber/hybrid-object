@@ -1,4 +1,4 @@
-import objectPath from "object-path";
+import { setProperty } from "dot-prop";
 
 /**
  * Sets the value at path of object. If a portion of path doesn't exist, it will be created.
@@ -24,7 +24,7 @@ import objectPath from "object-path";
  * obj.get('a.b.e.f'); // 2
  */
 const set = function (path, value) {
-    return objectPath.set(this, path, value);
+    return setProperty(this, path, value);
 };
 
 export default set;

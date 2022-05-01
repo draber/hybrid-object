@@ -1,7 +1,7 @@
 import { isPlainObject } from 'is-plain-object';
 
 /**
- * Retrieve all paths as an array in `dotted-string-notation`
+ * Retrieve a flattened version of an object with all paths on all levels in `dotted-string-notation`
  * @param {Object} obj
  * @param {Array} [flattened]
  * @param {String} [propStr]
@@ -32,11 +32,10 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
 };
 
 /**
- * Retrieve a version of the object with all 'keys.flattened.to.paths'. This returns a regular object because its keys contain dots and it would require
- * some sort of escaping strategy to make it work with `ElasticObject.get()`.
+ * Retrieve a version of the object with all 'keys.flattened.to.paths'. 
  * @memberof ElasticObject
  * @instance
- * @returns {Object}
+ * @returns {ElasticObject}
  * @example
  * const eObj = new ElasticObject({
  *     a: {
@@ -49,7 +48,7 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
  * console.log(eObj.flatten()); // {a.aa:1,b.bb:2}
  */
 const flatten = function () {
-    return flattenObject(this);
+    return this.create(flattenObject(this));
 };
 
 export default flatten;

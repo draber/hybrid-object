@@ -19,7 +19,7 @@
  * console.log(eObj.get('a.b.c')); // 2
  */
 const clone = function () {
-    return this.createInstance(structuredClone(this));
+    return this.create(structuredClone(this));
 };
 
 export default clone;

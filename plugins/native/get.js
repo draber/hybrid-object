@@ -1,5 +1,5 @@
-import { isPlainObject } from 'is-plain-object';
-import objectPath from "object-path";
+import { isPlainObject } from "is-plain-object";
+import { getProperty } from "dot-prop";
 
 /**
  * Gets the value at path of object.
@@ -8,6 +8,7 @@ import objectPath from "object-path";
  * @memberof ElasticObject
  * @instance
  * @returns {*}
+ * @see https://www.npmjs.com/package/dot-prop#readme for an example of how to escape dots in keys with `\\`
  * @example
  * const eObj = new ElasticObject({
  *     a: {
@@ -24,9 +25,9 @@ import objectPath from "object-path";
  * console.log(eObj.get('b.bb', () => 'default')); // [Function: bb]
  * console.log(eObj.get('a')); // {aa:1}
  */
-const get = function(path) {
-    const value = objectPath.get(this, path);
-    return isPlainObject(value) ? this.createInstance(value) : value;
+const get = function (path) {
+    const value = getProperty(this, path);
+    return isPlainObject(value) ? this.create(value) : value;
 };
 
 export default get;

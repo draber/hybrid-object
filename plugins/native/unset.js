@@ -1,4 +1,4 @@
-import objectPath from "object-path";
+import { deleteProperty } from "dot-prop";
 
 /**
  * Removes the property at path of object.
@@ -19,7 +19,7 @@ import objectPath from "object-path";
  * obj.get('a.b.d'); // undefined
  */
 const unset = function (path) {
-    return objectPath.del(this, path);
+    return deleteProperty(this, path);
 };
 
 export default unset;

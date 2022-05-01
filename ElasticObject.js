@@ -1,7 +1,21 @@
+/*!
+ * ElasticObject <https://github.com/draber/elastic-object>
+ *
+ * Copyright (c) 2022, Dieter Raber.
+ * Released under the MIT License.
+ */
 import arrayPlugins from "./plugins/array.js";
 import nativePlugins from "./plugins/native.js";
 
-//import console from 'a-nicer-console'
+const defaultPlugins = {
+    ...nativePlugins,
+    ...arrayPlugins,
+};
+
+// This namespace tricks the documentor into creating an extra block for static methods
+/**
+ * @namespace Static
+ */
 
 /**
  * Implementation on top of plain objects that brings a variety of array-like functionality.
@@ -13,13 +27,12 @@ import nativePlugins from "./plugins/native.js";
 class ElasticObject extends Object {
     /**
      * Override the default `assign` method and ensure that the first argument is an instance of `ElasticObject`.
-     * Not to be confused with the eponymous `instance.assign()` method.
+     * Doesn't support addition of plugins, look into `ElasticObject.loadPlugins()` for that.
      * @param {Object|ElasticObject} target
      * @param  {...*} sources Objects|ElasticObjects to be merged
      * @static
-     * @ignore
      * @returns ElasticObject
-     * @namespace ElasticObject
+     * @method Static.assign
      * @example
      * const obj1 = {a: 1, b: 2};
      * const obj2 = {c: 3, d: 4};
@@ -33,6 +46,40 @@ class ElasticObject extends Object {
     }
 
     /**
+     * Creates a new ElasticObject from an existing object.
+     * @param {*} data
+     * @param {*} [plugins]
+     * @static
+     * @returns ElasticObject
+     * @method Static.create
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+     * @example
+     * const obj = ElasticObject.create({a: 1, b: 2});
+     */
+    static create(data, plugins = {}) {
+        return new ElasticObject(data, plugins);
+    }
+
+    /**
+     * Creates a new ElasticObject from an iterable.
+     * @param {Iterable} entries
+     * @param {*} [plugins]
+     * @returns ElasticObject
+     * @static
+     * @method Static.fromEntries
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
+     * @example
+     * const entries = new Map([
+     *  ['foo', 'bar'],
+     *  ['baz', 42]
+     *  ]);
+     * const eObj = ElasticObject.createFrom(entries);
+     */
+    static fromEntries(entries, plugins = {}) {
+        return new ElasticObject(Object.fromEntries(entries), plugins);
+    }
+
+    /**
      * Constructor
      * @param {Object|ElasticObject} data
      * @param {Object} [plugins] - An object containing the plugins to be used.
@@ -40,17 +87,36 @@ class ElasticObject extends Object {
     constructor(data = {}, plugins = {}) {
         super();
 
-        for (const [name, plugin] of Object.entries({
-            ...nativePlugins,
-            ...arrayPlugins,
-            ...plugins,
-        })) {
-            ElasticObject.prototype[name] = plugin;
-        }
+        /**
+         * Load the plugins. This method can also be used to add new plugins Elastic Objects created with
+         * `ElasticObject.create()`, `ElasticObject.createFrom()` or `ElasticObject.assign()`.
+         * Note that in this case this method needs to be called before the `ElasticObject` is used.
+         * @param {Object} plugins - An object containing additinal methods.
+         * @see https://github.com/draber/elastic-object/blob/main/plugins
+         * @example
+         * const myPlugins = {
+         *    methodA: function() {
+         *        console.log(this);
+         *    }
+         *    // more methods
+         *}
+         * const eObj = ElasticObject.create({a: 1, b: 2});
+         * eObj.loadPlugins(myPlugins);
+         * eObj.methodA(); // logs ElasticObject { bar: 42 }
+         */
+        ElasticObject.prototype.loadPlugins = function (plugins) {
+            Object.entries(plugins).forEach(([name, plugin]) => {
+                if (typeof plugin === "function") {
+                    ElasticObject.prototype[name] = plugin;
+                }
+            });
+        };
 
-        ElasticObject.prototype.createInstance = function(data = {}){
-            return new ElasticObject(data, plugins);
-        }
+        this.loadPlugins({ ...defaultPlugins, ...plugins });
+
+        ElasticObject.prototype.create = function (data = {}) {
+            return ElasticObject.create(data, plugins);
+        };
         Object.assign(this, data);
     }
 }
