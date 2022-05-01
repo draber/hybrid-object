@@ -1,6 +1,7 @@
 /**
  * Returns an array of the object's own enumerable string-keyed property [key, value] pairs.
- * This is modeled after the behavior of `Object.entries()` and _not_ `Array.entries()` which returns an iterator.
+ * Instance flavor of `ElasticObject.entries()`. Note that this uses `this` instead of an argument.
+ * Not to be confused with `Array.entries()` which returns an iterator rather than an array.
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
  * @memberof ElasticObject
  * @instance

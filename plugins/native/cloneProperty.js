@@ -6,6 +6,7 @@ import { isPlainObject } from "is-plain-object";
  * @memberof ElasticObject
  * @instance
  * @returns {*} ElasticObject if possible, otherwise the value
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
  * @example
  * const eObj = new ElasticObject({
  *     a: {

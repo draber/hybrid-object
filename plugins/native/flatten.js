@@ -45,7 +45,7 @@ const flattenObject = (obj, flattened = {}, propStr = "") => {
  *        bb: 2
  *     }
  * });
- * console.log(eObj.flatten()); // {a.aa:1,b.bb:2}
+ * console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb: 2 }, 'b.bb': 2 }
  */
 const flatten = function () {
     return this.create(flattenObject(this));

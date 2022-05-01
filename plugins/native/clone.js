@@ -3,6 +3,7 @@
  * @memberof ElasticObject
  * @instance
  * @returns {ElasticObject}
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
  * @example
  * const eObj = new ElasticObject({
  *     a: {

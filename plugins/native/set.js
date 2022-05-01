@@ -8,6 +8,7 @@ import { setProperty } from "dot-prop";
  * @memberof ElasticObject
  * @instance
  * @returns {ElasticObject}
+ * @see https://www.npmjs.com/package/dot-prop#readme
  * @example
  * const obj = new ElasticObject({
  *    a: {
@@ -16,11 +17,11 @@ import { setProperty } from "dot-prop";
  *      }
  *   }
  * });
- * obj.set('a.b.c', 2);
+ * obj.set('a.b.c', 2); // ElasticObject { a: { b: { c: 2 } } }
  * obj.get('a.b.c'); // 2
- * obj.set('a.b.d', 2);
+ * obj.set('a.b.d', 2); // ElasticObject { a: { b: { c: 2, d: 2 } } }
  * obj.get('a.b.d'); // 2
- * obj.set('a.b.e.f', 2);
+ * obj.set('a.b.e.f', 2); // ElasticObject { a: { b: { c: 2, d: 2, e: { f: 2 } } } }
  * obj.get('a.b.e.f'); // 2
  */
 const set = function (path, value) {

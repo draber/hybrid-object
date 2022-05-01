@@ -1,10 +1,11 @@
 /**
- * Copies all enumerable own properties from one or more source objects to the Hybrid Object.
- * Not to be confused with the eponymous static `ElasticObject.assign()` method.
- * @param {...Object} sources The source object(s) — objects containing the properties you want to apply.
+ * Copies all enumerable own properties from one or more source objects to the Elastic Object.
+ * Instance flavor of `ElasticObject.assign()`. Note that this uses `this` as the target object.
+ * @param {...Object} sources The source object(s), regular or elastic — objects containing the properties you want to apply.
  * @memberof ElasticObject
  * @instance
  * @returns {ElasticObject}
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
  * @example
  * const eObj = new ElasticObject({
  *     a: 1,

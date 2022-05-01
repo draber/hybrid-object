@@ -1,35 +1,33 @@
 import { isPlainObject } from 'is-plain-object';
 
 /**
- * Executes a user-supplied "reducer" callback function on each entry of the object, in order, 
- * passing in the return value from the calculation on the preceding entry. The final result of 
- * running the reducer across all entries of the object is a single value.
- * Equivalent of Array.reduce
+ * Applies a function against an accumulator and each entry of the object (from right-to-left) to reduce it to a single value.
+ * Equivalent of Array.reduceRight
  * @param {Function} callbackFn Args: accumulator, value, path, values [, thisArg]
  * @param {Object|undefined} [initialValue] Value to use as the first argument to the first call of the callback.
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight
  * @memberof ElasticObject
  * @instance
  * @returns {*}
  * @example
  * const obj = {
- *     a: 1,
- *     b: 2,
- *     c: 3,
+ *     a: 'l',
+ *     b: 't',
+ *     c: 'r'
  * };
- * const result = obj.reduce((accumulator, value, path, values) => {
+ * const result = obj.reduceRight((accumulator, value, path, values) => {
  *     return accumulator + value;
  * }, 0);
- * console.log(result); // 6
+ * console.log(result); // 'rtl'
  */
-const reduce = function (callbackFn, initialValue, thisArg) {
+ const reduceRight = function (callbackFn, initialValue, thisArg) {
     const entries = this.entries();
     let accumulator = initialValue;
-    for (let [path, value] of entries) {
+    for (let [path, value] of entries.reverse()) {
         accumulator = callbackFn(accumulator, value, path, entries, thisArg);
     }
     return isPlainObject(accumulator) ? this.create(accumulator) : accumulator;
 };
 
-export default reduce;
+export default reduceRight;

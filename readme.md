@@ -1,6 +1,6 @@
 # Elastic Object
 
-The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. You can look at _Elastic Objects_ as a hybrid between an _Object_ and an _Array_ - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, you can use it like an object from the start. 
+The most common collection types in JavaScript are _Plain Objects_, _Arrays_, _Maps_ and _Sets_. They all have their rightful place, their advantages and shortcomings; the latter show especially on deeply nested collections. You can look at _Elastic Objects_ as a elastic between an _Object_ and an _Array_ - you get the benefits of both, but you can also add new properties to the object. Since it is an extension of plain objects, you can use it like an object from the start. 
 
 ## Installation
 

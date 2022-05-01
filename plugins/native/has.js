@@ -6,13 +6,14 @@ import { hasProperty } from "dot-prop";
  * @returns {Boolean} Returns true if path exists, else false.
  * @memberof ElasticObject
  * @instance
+ * @see https://www.npmjs.com/package/dot-prop#readme
  * @example
  * const eObj = new ElasticObject({
  *     a: {
  *        aa: 1
  *     },
  *     b: {
- *        bb: function() {}
+ *        bb: 2
  *     }
  * });
  * console.log(eObj.has('a.aa')); // true

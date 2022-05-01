@@ -7,6 +7,7 @@ import includes from './array/includes.js';
 import length from './array/length.js';
 import map from './array/map.js';
 import reduce from './array/reduce.js';
+import reduceRight from './array/reduceRight.js';
 import some from './array/some.js';
 import sort from './array/sort.js';
 
@@ -20,6 +21,7 @@ export default {
     length,
     map,
     reduce,
+    reduceRight,
     some,
     sort
 }

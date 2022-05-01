@@ -50,11 +50,37 @@ export const plugins = {
         return this.baz;
     },
     methodC: function () {
-        return 'c';
-    }
+        return "c";
+    },
 };
 
 export const entryMap = new Map([
     ["foo", "bar"],
     ["baz", 42],
 ]);
+
+export const ltr = {
+    a: "l",
+    b: "t",
+    c: "r",
+};
+
+export const unsorted = { a: 3, b: 2, c: 1 };
+
+export const unsortedNested = {
+    a: {
+        obj: {
+            val: 5,
+        }
+    },
+    b: {
+        obj: {
+            val: 3,
+        }
+    },
+    c: {
+        obj: {
+            val: 7,
+        }
+    },
+};

@@ -1,6 +1,6 @@
 /**
- * Returns the flattend path of the first value found.
- * Equivalent of `Array.findIndex()`, based on the flattened version of the object.
+ * Returns the path of the first value that matches the condition in the callback function.
+ * Equivalent of `Array.findIndex()`.
  * @param {Function} callbackFn Args: value, path, flattenedObject [, thisArg]
  * @param {Object|undefined} [thisArg] Value to use as `this` when executing callbackFn
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex

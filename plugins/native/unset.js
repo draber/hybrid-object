@@ -6,6 +6,7 @@ import { deleteProperty } from "dot-prop";
  * @memberof ElasticObject
  * @instance
  * @returns {Boolean}
+ * @see https://www.npmjs.com/package/dot-prop#readme
  * @example
  * const obj = new ElasticObject({
  *     a: {
@@ -15,8 +16,6 @@ import { deleteProperty } from "dot-prop";
  * });
  * obj.unset('a.b.c');
  * obj.get('a.b.c'); // undefined
- * obj.unset('a.b.d');
- * obj.get('a.b.d'); // undefined
  */
 const unset = function (path) {
     return deleteProperty(this, path);
