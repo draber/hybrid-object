@@ -24,7 +24,8 @@ import { setProperty } from "dot-prop";
  * obj.get('a.b.e.f'); // 2
  */
 const set = function (path, value) {
-    return setProperty(this, path, value);
+    setProperty(this, path, value);
+    return this;
 };
 
 export default set;

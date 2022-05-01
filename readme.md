@@ -53,7 +53,7 @@ _Elastic Objects_ are extensions of plain objects so everything you can do with 
 Accessing properties with `set('path.to.property')` is a common implementation pattern, but it's not native to JavaScript. With `set()`, `get()`, `has()` and `unset()` _Elastic Object_ has built-in support for this pattern. To avoid confusion with JavaScript's native [dot notation](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation), this document uses the term `dotted.string.notation` instead. The feature is powered by Sindre Sorhus' [dot-prop](//www.npmjs.com/package/dot-prop) library.
 
 ### Array methods
-Not all array methods make sense on an object, but `every()`, `filter()`, `find()`, `forEach()`, `includes()`, `length()`, `map()`, `reduce()`, `some()` and `sort()` certainly do and _Elastic Object_ has them all. There is also `findPath()` as an equivalent of `findIndex()`. All methods work pretty much like their array counterparts, which means they generally refer to the top level of the object. `findPath()`, however, searches all levels as long as the values are either arrays or objects. Note that `length()` is, contrary to the array implementation, built out as a function.
+Not all array methods make sense on an object, but `every()`, `filter()`, `find()`, `forEach()`, `includes()`, `length()`, `map()`, `reduce()`, `reduceRight()`, `some()` and `sort()` certainly do and _Elastic Object_ has them all. There is also `findPath()` as an equivalent of `findIndex()`. All methods work pretty much like their array counterparts, which means they generally refer to the top level of the object. `findPath()`, however, searches all levels as long as the values are either arrays or objects. Note that `length()` is, contrary to the array implementation, built out as a function.
 
 ### Other methods
 `toJson()`, `clone()` and `cloneProperty()` cover common tasks and it makes sense to have them available. The `flatten()` method finally returns a version of the object with all nested paths converted to strings in `dotted.string.notation`. The above example as a flat object looks like this:
@@ -66,8 +66,16 @@ Not all array methods make sense on an object, but `every()`, `filter()`, `find(
 }
 ```
 
+### Chainability
+Whenever a method would normally return an object, an elastic object with the same plugins will be returned instead. This means that you can chain methods, like this:
+
+```javascript
+eObj.set('path.to.string', "foo").set('path.to.integer', 42).set('another.path.to.float', 3.14);
+eObj.get('path.to.a.plain.object').filter(value => value > 3).values();
+```
+
 ### Adding properties
-You aren't limited to _Elastic Object's_ native functionality. It has a plugin system that allows you to pass an object of new methods as an argument to the constructor. `/plugins/array.js` and `/plugins/native.js` are loaded by default and you can check out these modules if you wish to add your own set of methods.
+You aren't limited to _Elastic Object's_ native functionality. It has a plugin system that allows you to pass an object of new methods as an argument to the constructor. `/plugins/array.js` and `/plugins/native.js` are loaded by default and you can check out these modules if you wish to add your own set of methods. Make sure that they implement the chainability paradigm as mentioned above.
 
 Below is a short example of how this works. Keep in mind to use regular function syntax to ensure access to `this`.
 
@@ -94,6 +102,16 @@ const eObj3 = ElasticObject.create(data);
 eObj3.methodA(); // TypeError: eObj1.methodA is not a function
 eObj3.loadPlugins(myPlugins); // now it works
 eObj3.methodA(); // ElasticObject { bar: 42 }
+
+
+
+// the magic formula for chainability:
+import { isPlainObject } from "is-plain-object";
+
+const foo = function() {
+    const value = {a: 1}; // or whereever your value comes from
+    return isPlainObject(value) ? this.create(value) : value;
+}
 ```
 
 
@@ -103,30 +121,38 @@ The following table is an overview of the available methods. The links in the fi
 
 | Method | External reference | Notes |
 |:-------|:-------------------|:------|
-| [`eObj.assign()`](//elastic-object.netlify.app/ElasticObject.html#assign) | [`Object.assign()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) | static: `ElasticObject.assign(eObj, rObj)`, instance: `eObj.assign(rObj)` |
+| [`eObj.assign()`](//elastic-object.netlify.app/ElasticObject.html#assign) | [`Object.assign()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) | Instance flavor: `eObj.assign(rObj)` |
+| [`ElasticObject.assign()`](//elastic-object.netlify.app/Static.html#assign) | [`Object.assign()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) | Static flavor: `ElasticObject.assign(eObj, rObj)` |
+| [`eObj.create()`](//elastic-object.netlify.app/ElasticObject.html#create) | [`Object.create()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) | Instance flavor: `eObj.create(rObj)` |
+| [`ElasticObject.create()`](//elastic-object.netlify.app/Static.html#create) | [`Object.create()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) | Static flavor: `ElasticObject.create(eObj, rObj)` |
 | [`eObj.clone()`](//elastic-object.netlify.app/ElasticObject.html#clone) | [`stucturedClone()`](//developer.mozilla.org/en-US/docs/Web/API/structuredClone) | Clones the whole object |
 | [`eObj.cloneEntry()`](//elastic-object.netlify.app/ElasticObject.html#cloneEntry) | [`stucturedClone()`](//developer.mozilla.org/en-US/docs/Web/API/structuredClone) | Clones any property of the object |
-| [`eObj.entries()`](//elastic-object.netlify.app/ElasticObject.html#entries) | [`Object.entries()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) | static: `ElasticObject.entries(eObj)`, instance: `eObj.entries()` |
+| [`eObj.entries()`](//elastic-object.netlify.app/ElasticObject.html#entries) | [`Object.entries()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) | Instance flavor: `eObj.entries(rObj)` |
+| [`ElasticObject.entries()`](//elastic-object.netlify.app/Static.html#entries) | [`Object.entries()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) | Static flavor: `ElasticObject.entries(eObj, rObj)` |
 | [`eObj.every()`](//elastic-object.netlify.app/ElasticObject.html#every) | [`Array.every()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) | Identical |
-| [`eObj.filter()`](//elastic-object.netlify.app/ElasticObject.html#filter) | [`Array.filter()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) | Returns a _Elastic Object_, chain `.finalValues()` to get only the values |
-| [`eObj.finalValues()`](//elastic-object.netlify.app/ElasticObject.html#finalValues)  | | Values of the flattened object |
+| [`eObj.filter()`](//elastic-object.netlify.app/ElasticObject.html#filter) | [`Array.filter()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) | Returns a _Elastic Object_, chain `.values()` to get only the values |
 | [`eObj.find()`](//elastic-object.netlify.app/ElasticObject.html#find)  | [`Array.find()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)  | Identical |
 | [`eObj.findPath()`](//elastic-object.netlify.app/ElasticObject.html#findPath) | [`Array.findIndex()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) | Returns path in `dotted.string.notation` rather than an index |
 | [`eObj.flatten()`](//elastic-object.netlify.app/ElasticObject.html#flatten) | | Flattened version of the object |
 | [`eObj.forEach()`](//elastic-object.netlify.app/ElasticObject.html#forEach) | [`Array.forEach()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) | Identical |
-| [`eObj.get()`](//elastic-object.netlify.app/ElasticObject.html#get)  | [`Lodash.get()`](//lodash.com/docs/#get) | Same signature, but without the first argument `object` |
-| [`eObj.has()`](//elastic-object.netlify.app/ElasticObject.html#has)  | [`Lodash.has()`](//lodash.com/docs/#has) | Same signature, but without the first argument `object` |
+| [`eObj.fromEntries()`](//elastic-object.netlify.app/ElasticObject.html#fromEntries) | [`Object.fromEntries()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries) | Instance flavor: `eObj.fromEntries(rObj)` |
+| [`ElasticObject.fromEntries()`](//elastic-object.netlify.app/Static.html#fromEntries) | [`Object.fromEntries()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries) | Static flavor: `ElasticObject.fromEntries(eObj, rObj)` |
+| [`eObj.get()`](//elastic-object.netlify.app/ElasticObject.html#get)  | [`getProperty()`](//www.npmjs.com/package/dot-prop) | Same signature, but without the first argument `object` |
+| [`eObj.has()`](//elastic-object.netlify.app/ElasticObject.html#has)  | [`hasProperty()`](//www.npmjs.com/package/dot-prop) | Same signature, but without the first argument `object` |
 | [`eObj.includes()`](//elastic-object.netlify.app/ElasticObject.html#includes) | [`Array.includes()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)  | Identical |
-| [`eObj.keys()`](//elastic-object.netlify.app/ElasticObject.html#keys) | [`Object.keys()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) | static: `ElasticObject.keys(eObj)`, instance: `eObj.keys()` |
-| [`eObj.length()`](//elastic-object.netlify.app/ElasticObject.html#length) | [`Array.length()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length) | In difference to `Array.length`, this is implemented as a function |
+| [`eObj.keys()`](//elastic-object.netlify.app/ElasticObject.html#keys) | [`Object.keys()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) | Instance flavor: `eObj.keys(rObj)` |
+| [`ElasticObject.keys()`](//elastic-object.netlify.app/Static.html#keys) | [`Object.keys()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) | Static flavor: `ElasticObject.keys(eObj, rObj)` |
+| [`eObj.length()`](//elastic-object.netlify.app/ElasticObject.html#length) | [`Array.length`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length) | In difference to `Array.length`, this is implemented as a function |
 | [`eObj.map()`](//elastic-object.netlify.app/ElasticObject.html#map) | [`Array.map()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) | Identical |
 | [`eObj.paths()`](//elastic-object.netlify.app/ElasticObject.html#paths)  | | Keys of the flattened object |
-| [`eObj.reduce()`](//elastic-object.netlify.app/ElasticObject.html#reduce)  | [`Lodash.reduce()`](//lodash.com/docs/#reduce) | Same signature, but without the first argument `object` |
-| [`eObj.set()`](//elastic-object.netlify.app/ElasticObject.html#set) | [`Lodash.set()`](//lodash.com/docs/#set)  | Same signature, but without the first argument `object` |
+| [`eObj.reduce()`](//elastic-object.netlify.app/ElasticObject.html#reduce)  | [`Array.reduce()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) | Identical |
+| [`eObj.reduceRight()`](//elastic-object.netlify.app/ElasticObject.html#reduceRight)  | [`Array.reduceRight()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight) | Identical |
+| [`eObj.set()`](//elastic-object.netlify.app/ElasticObject.html#set) | [`setProperty()`](//www.npmjs.com/package/dot-prop)  | Same signature, but without the first argument `object` |
 | [`eObj.some()`](//elastic-object.netlify.app/ElasticObject.html#some)  | [`Array.some()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) | Identical |
 | [`eObj.sort()`](//elastic-object.netlify.app/ElasticObject.html#sort) | [`Array.sort()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | Identical |
 | [`eObj.toJson()`](//elastic-object.netlify.app/ElasticObject.html#toJson)  | [`JSON.stringify()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) | With boolean `pretty` argument for pretty-print |
-| [`eObj.unset()`](//elastic-object.netlify.app/ElasticObject.html#unset) | [`Lodash.unset()`](//lodash.com/docs/#unset) | Same signature, but without the first argument `object` |
-| [`eObj.values()`](//elastic-object.netlify.app/ElasticObject.html#values)  | [`Object.values()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values) | static: `ElasticObject.values(eObj)`, instance: `eObj.xalues()` |
+| [`eObj.unset()`](//elastic-object.netlify.app/ElasticObject.html#unset) | [`deleteProperty()`](//www.npmjs.com/package/dot-prop)  | Same signature, but without the first argument `object` |
+| [`eObj.values()`](//elastic-object.netlify.app/ElasticObject.html#values) | [`Object.values()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values) | Instance flavor: `eObj.values(rObj)` |
+| [`ElasticObject.values()`](//elastic-object.netlify.app/Static.html#values) | [`Object.values()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values) | Static flavor: `ElasticObject.values(eObj, rObj)` |
 
 
