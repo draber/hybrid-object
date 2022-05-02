@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for elastic-object/plugins/native/keys.js</title>
+    <title>Code coverage report for elastic-object/plugins/native/fromEntries.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">elastic-object/plugins/native</a> keys.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">elastic-object/plugins/native</a> fromEntries.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -83,11 +83,7 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,32 +100,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * Retrieve an array of all keys at the top level of the object, equivalent to `Object.keys(eObj)`.
- * Instance flavor of `ElasticObject.assign()`.
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+ * Transforms a list of key-value pairs into an Elastic Object.
+ * Instance flavor of `ElasticObject.fromEntries()`.
+ * @param {Iterable} iterable An iterable such as Array or Map or other objects implementing the iterable protocol.
  * @memberof ElasticObject
  * @instance
- * @returns {Array}
+ * @returns {ElasticObject}
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
  * @example
- * const eObj = new ElasticObject({
- *     a: {
- *        aa: 1
- *     },
- *     b: {
- *        bb: 2
- *     }
- * });
- * console.log(eObj.keys()); // ['a','b']
+ * const entries = new Map([
+ *     ['foo', 'bar'],
+ *     ['baz', 42]
+ * ]);
+ * const obj = Object.fromEntries(entries);
+ * console.log(obj); // ElasticObject { foo: 'bar', baz: 42 }
  */
-const keys = function () {
-    return Object.keys(this);
+const fromEntries = function (iterable) {
+    return this.create(Object.fromEntries(iterable));
 };
 &nbsp;
-export default keys;</pre></td></tr></table></pre>
+export default fromEntries;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

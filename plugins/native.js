@@ -5,6 +5,7 @@ import cloneProperty from './native/cloneProperty.js';
 import entries from './native/entries.js';
 import findPath from './native/findPath.js';
 import flatten from './native/flatten.js';
+import fromEntries from './native/fromEntries.js';
 import get from './native/get.js';
 import has from './native/has.js';
 import keys from './native/keys.js';
@@ -22,6 +23,7 @@ export default {
     entries,
     findPath,
     flatten,
+    fromEntries,
     get,
     has,
     keys,
