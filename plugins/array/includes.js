@@ -8,12 +8,8 @@
  * @returns {Boolean}
  * @example
  * const eObj = new ElasticObject({
- *     a: {
- *        aa: 1
- *     },
- *     b: {
- *        bb: 2
- *     }
+ *     a: 1,
+ *     b: 2
  * });
  * console.log(eObj.includes(1)); // true
  * console.log(eObj.includes(3)); // false
