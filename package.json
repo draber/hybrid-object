@@ -1,11 +1,12 @@
 {
   "name": "elastic-object",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Just like plain old objects, but with built-in array methods, get(), set() and other goodies",
   "main": "ElasticObject.js",
   "type": "module",
   "scripts": {
       "test": "node --warnings --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage ./tests",
+      "cov-badge": "npm test && jest-coverage-badges",
       "docs": "jsdoc -c ./jsdoc.json"
   },
   "devDependencies": {
@@ -26,5 +27,10 @@
   "bugs": {
       "url": "https://github.com/draber/elastic-object/issues"
   },
-  "homepage": "https://github.com/draber/elastic-object#readme"
+  "homepage": "https://github.com/draber/elastic-object#readme",
+  "jest": {
+    "coverageReporters": [
+      "json-summary"
+    ]
+  }
 }

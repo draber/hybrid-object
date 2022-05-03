@@ -49,6 +49,9 @@
 
     <section class="readme">
         <article><h1>Elastic Object</h1>
+<p><img src="https://img.shields.io/github/package-json/v/draber/elastic-object" alt="">
+<img src="https://img.shields.io/github/license/draber/elastic-object.svg" alt="">
+<img src="https://img.shields.io/bundlephobia/min/elastic-object" alt=""></p>
 <p><em>Plain Objects</em> are great for handling data, but they can be a bit clunky. This is where <em>Elastic Object</em> comes in. On top of the regular object functionality, it features <code>get()</code> and <code>set()</code> with <code>dotted.string.notation</code>, as well as loops and all the other good stuff you already know from <em>Arrays</em>, <em>Maps</em> or <em>Sets</em>. It is  easily extendable in case you want to add your own methods. And with ~6kb it's not too big either.</p>
 <h2>Installation</h2>
 <pre class="prettyprint source lang-bash"><code>npm i elastic-object
@@ -88,7 +91,7 @@ eObj.forEach((value, key) => {
 <p><em>Elastic Objects</em> are extensions of plain objects, so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:</p>
 <ul>
 <li>Static methods, such as <code>assign()</code> or <code>create()</code>, which you would expect to return regular objects, will return elastic objects instead.</li>
-<li><code>keys()</code>, <code>values()</code>, <code>entries()</code>, <code>assign()</code> and <code>create()</code> are also available as instance methods. When you use them in this way, they refer to <code>this</code>. In the case of <code>assign()</code>, <code>this</code> is the first argument.</li>
+<li><code>keys()</code>, <code>values()</code>, <code>entries()</code>, <code>assign()</code> and <code>create()</code> are also available as instance methods. When called from within the instance, they refer to <code>this</code> and - with the exception of <code>assign()</code> - don't take arguments.</li>
 </ul>
 <h3>Accessors</h3>
 <p>Accessing properties with <code>set('path.to.property')</code> is a common implementation pattern, but it's not native to JavaScript. With <code>set()</code>, <code>get()</code>, <code>has()</code> and <code>unset()</code> <em>Elastic Object</em> has built-in support for this pattern. To avoid confusion with JavaScript's native <a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation">dot notation</a>, this document uses the term <code>dotted.string.notation</code> instead. The feature is powered by Sindre Sorhus' <a href="//www.npmjs.com/package/dot-prop">dot-prop</a> library.</p>
@@ -161,22 +164,22 @@ const foo = function() {
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#assign"><code>eObj.assign()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"><code>Object.assign()</code></a></td>
-<td style="text-align:left">Instance flavor: <code>eObj.assign(rObj)</code></td>
+<td style="text-align:left">Instance flavor: <code>eObj.assign(...sources)</code>, <code>this</code> is the target</td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/Static.html#assign"><code>ElasticObject.assign()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"><code>Object.assign()</code></a></td>
-<td style="text-align:left">Static flavor: <code>ElasticObject.assign(eObj, rObj)</code></td>
+<td style="text-align:left">Static flavor: <code>ElasticObject.assign(target, ...sources)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#create"><code>eObj.create()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><code>Object.create()</code></a></td>
-<td style="text-align:left">Instance flavor: <code>eObj.create(rObj)</code></td>
+<td style="text-align:left">Instance flavor: <code>eObj.create(anyObj)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/Static.html#create"><code>ElasticObject.create()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><code>Object.create()</code></a></td>
-<td style="text-align:left">Static flavor: <code>ElasticObject.create(eObj, rObj)</code></td>
+<td style="text-align:left">Static flavor: <code>ElasticObject.create(anyObj)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#clone"><code>eObj.clone()</code></a></td>
@@ -191,12 +194,12 @@ const foo = function() {
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#entries"><code>eObj.entries()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"><code>Object.entries()</code></a></td>
-<td style="text-align:left">Instance flavor: <code>eObj.entries(rObj)</code></td>
+<td style="text-align:left">Instance flavor: <code>eObj.entries()</code>, uses <code>this</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/Static.html#entries"><code>ElasticObject.entries()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"><code>Object.entries()</code></a></td>
-<td style="text-align:left">Static flavor: <code>ElasticObject.entries(eObj, rObj)</code></td>
+<td style="text-align:left">Static flavor: <code>ElasticObject.entries(anyObj)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#every"><code>eObj.every()</code></a></td>
@@ -231,12 +234,12 @@ const foo = function() {
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#fromEntries"><code>eObj.fromEntries()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries"><code>Object.fromEntries()</code></a></td>
-<td style="text-align:left">Instance flavor: <code>eObj.fromEntries(rObj)</code></td>
+<td style="text-align:left">Instance flavor: <code>eObj.fromEntries(iteratable)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/Static.html#fromEntries"><code>ElasticObject.fromEntries()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries"><code>Object.fromEntries()</code></a></td>
-<td style="text-align:left">Static flavor: <code>ElasticObject.fromEntries(eObj, rObj)</code></td>
+<td style="text-align:left">Static flavor: <code>ElasticObject.fromEntries(iteratable)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#get"><code>eObj.get()</code></a></td>
@@ -256,12 +259,12 @@ const foo = function() {
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#keys"><code>eObj.keys()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a></td>
-<td style="text-align:left">Instance flavor: <code>eObj.keys(rObj)</code></td>
+<td style="text-align:left">Instance flavor: <code>eObj.keys()</code>, uses <code>this</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/Static.html#keys"><code>ElasticObject.keys()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a></td>
-<td style="text-align:left">Static flavor: <code>ElasticObject.keys(eObj, rObj)</code></td>
+<td style="text-align:left">Static flavor: <code>ElasticObject.keys(anyObj)</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#length"><code>eObj.length()</code></a></td>
@@ -316,12 +319,12 @@ const foo = function() {
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/ElasticObject.html#values"><code>eObj.values()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values"><code>Object.values()</code></a></td>
-<td style="text-align:left">Instance flavor: <code>eObj.values(rObj)</code></td>
+<td style="text-align:left">Instance flavor: <code>eObj.values()</code>, uses <code>this</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="//elastic-object.netlify.app/Static.html#values"><code>ElasticObject.values()</code></a></td>
 <td style="text-align:left"><a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values"><code>Object.values()</code></a></td>
-<td style="text-align:left">Static flavor: <code>ElasticObject.values(eObj, rObj)</code></td>
+<td style="text-align:left">Static flavor: <code>ElasticObject.values(anyObj)</code></td>
 </tr>
 </tbody>
 </table></article>
@@ -337,7 +340,7 @@ const foo = function() {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon May 02 2022 07:52:46 GMT+0200 (Central European Summer Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue May 03 2022 23:08:52 GMT+0200 (Central European Summer Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
