@@ -1,8 +1,8 @@
 # Elastic Object
 
 ![](https://img.shields.io/github/license/draber/elastic-object.svg)
-![](https://img.shields.io/github/package-json/v/draber/elastic-object)
-![](https://img.shields.io/bundlephobia/min/elastic-object)
+![](https://img.shields.io/github/package-json/v/draber/elastic-object.svg)
+![](https://img.shields.io/bundlephobia/min/elastic-object.svg)
 
 _Plain Objects_ are great for handling data, but they can be a bit clunky. This is where _Elastic Object_ comes in. On top of the regular object functionality, it features `get()` and `set()` with `dotted.string.notation`, as well as loops and all the other good stuff you already know from _Arrays_, _Maps_ or _Sets_. It is  easily extendable in case you want to add your own methods. And with ~5.5kb it's not too big either.
 
@@ -51,7 +51,7 @@ eObj.forEach((value, key) => {
 ### Standard object methods
 _Elastic Objects_ are extensions of plain objects, so everything you can do with plain objects can be done with elastic objects, too. There are some differences, though:
 - Static methods, such as `assign()` or `create()`, which you would expect to return regular objects, will return elastic objects instead.
-- `keys()`, `values()`, `entries()`, `assign()` and `create()` are also available as instance methods. When called from within the instance, they refer to `this` and - with the exception of `assign()` - don't take arguments.
+- `keys()`, `values()`, `entries()`, `assign()`, `create()` and `fromEntries()` are also available as instance methods. From within the instance `keys()`, `values()`, `entries()` refer to `this` and take no arguments. `assign()` uses `this` as the `target` argument. `create()` and `fromEntries()` work exactly like their static counterparts.
 
 ### Accessors
 Accessing properties with `set('path.to.property')` is a common implementation pattern, but it's not native to JavaScript. With `set()`, `get()`, `has()` and `unset()` _Elastic Object_ has built-in support for this pattern. To avoid confusion with JavaScript's native [dot notation](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation), this document uses the term `dotted.string.notation` instead. The feature is powered by Sindre Sorhus' [dot-prop](//www.npmjs.com/package/dot-prop) library.
