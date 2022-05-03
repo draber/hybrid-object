@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/license/draber/elastic-object.svg)
 ![](https://img.shields.io/bundlephobia/min/elastic-object)
 
-_Plain Objects_ are great for handling data, but they can be a bit clunky. This is where _Elastic Object_ comes in. On top of the regular object functionality, it features `get()` and `set()` with `dotted.string.notation`, as well as loops and all the other good stuff you already know from _Arrays_, _Maps_ or _Sets_. It is  easily extendable in case you want to add your own methods. And with ~6kb it's not too big either.
+_Plain Objects_ are great for handling data, but they can be a bit clunky. This is where _Elastic Object_ comes in. On top of the regular object functionality, it features `get()` and `set()` with `dotted.string.notation`, as well as loops and all the other good stuff you already know from _Arrays_, _Maps_ or _Sets_. It is  easily extendable in case you want to add your own methods. And with ~5.5kb it's not too big either.
 
 ## Installation
 
