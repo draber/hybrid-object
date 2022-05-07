@@ -1,4 +1,4 @@
-import { isPlainObject } from "is-plain-object";
+import isPlainObject from "whats-the-type/isPlainObject.js";
 import { getProperty } from "dot-prop";
 
 /**

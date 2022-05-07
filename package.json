@@ -1,31 +1,37 @@
 {
   "name": "elastic-object",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Just like plain old objects, but with built-in array methods, get(), set() and other goodies",
   "main": "ElasticObject.js",
   "type": "module",
   "scripts": {
-      "test": "node --warnings --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage ./tests",
-      "cov-badge": "npm test && jest-coverage-badges",
-      "docs": "jsdoc -c ./jsdoc.json"
+    "test": "node --warnings --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage ./tests",
+    "cov-badge": "npm test && jest-coverage-badges",
+    "docs": "jsdoc -c ./jsdoc.json"
   },
   "devDependencies": {
-      "jest": "^28.0.3",
-      "minami": "^1.2.3"
+    "jest": "^28.0.3",
+    "minami": "^1.2.3"
   },
   "dependencies": {
-      "dot-prop": "^7.2.0",
-      "is-plain-object": "^5.0.0"
+    "dot-prop": "^7.2.0",
+    "whats-the-type": "^1.0.1"
   },
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/draber/elastic-object.git"
+    "type": "git",
+    "url": "git+https://github.com/draber/elastic-object.git"
   },
-  "keywords": ["dot notation", "object", "get", "set", "array functions"],
+  "keywords": [
+    "dot notation",
+    "object",
+    "get",
+    "set",
+    "array functions"
+  ],
   "author": "Dieter Raber",
   "license": "MIT",
   "bugs": {
-      "url": "https://github.com/draber/elastic-object/issues"
+    "url": "https://github.com/draber/elastic-object/issues"
   },
   "homepage": "https://github.com/draber/elastic-object#readme",
   "jest": {

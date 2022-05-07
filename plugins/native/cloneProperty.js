@@ -1,4 +1,4 @@
-import { isPlainObject } from "is-plain-object";
+import isPlainObject from "whats-the-type/isPlainObject.js";
 
 /**
  * Returns a deep clone of a particular property

@@ -1,4 +1,4 @@
-import { isPlainObject } from "is-plain-object";
+import isPlainObject from "whats-the-type/isPlainObject.js";
 
 /**
  * Executes a user-supplied "reducer" callback function on each entry of the object, in order, 

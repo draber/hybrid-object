@@ -1,4 +1,4 @@
-import { isPlainObject } from "is-plain-object";
+import isPlainObject from "whats-the-type/isPlainObject.js";
 
 /**
  * Applies a function against an accumulator and each entry of the object (from right-to-left) to reduce it to a single value.
