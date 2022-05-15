@@ -114,7 +114,7 @@ eObj3.methodA(); // ElasticObject { bar: 42 }
 
 
 // the magic formula for chainability:
-import { isPlainObject } from "is-plain-object";
+import isPlainObject from "whats-the-type/isPlainObject.js";
 
 const foo = function() {
     const value = {a: 1}; // or whereever your value comes from
