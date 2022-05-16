@@ -25,10 +25,7 @@ const sort = function (compareFn) {
     const entries = this.entries();
     const sorted = entries.sort(
         ([keyA, valueA], [keyB, valueB]) => {
-            if (compareFn) {
-                return compareFn(valueA, valueB);
-            }
-            return valueA - valueB;
+            return compareFn(valueA, valueB);
         }
     );
     sorted.forEach(([key, value]) => {

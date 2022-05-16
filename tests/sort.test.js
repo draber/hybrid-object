@@ -10,9 +10,7 @@ test("sort w/o callback", () => {
 
 test("sort w/ callback", () => {
     const eObj = new ElasticObject(unsortedNested);
-    const comparator = (a, b) => {
-        a.obj.val - b.obj.val;
-    };
+    const comparator = (a, b) => a.obj.val - b.obj.val;
     const expected = new ElasticObject({
         b: {
             obj: {
