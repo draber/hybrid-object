@@ -165,3 +165,9 @@ The following table is an overview of the available methods. The links in the fi
 | [`ElasticObject.values()`](//elastic-object.netlify.app/Static.html#values) | [`Object.values()`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values) | Static flavor: `ElasticObject.values(anyObj)` |
 
 
+
+## Resources
+
+- Repository: [github.com/draber/elastic-object](https://github.com/draber/elastic-object) 
+- Package: [npmjs.com/package/elastic-object](https://npmjs.com/package/elastic-object)
+- Docs: [elastic-object.netlify.app](https://elastic-object.netlify.app/)
