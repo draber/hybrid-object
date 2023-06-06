@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1652732662280" clover="3.2.0">
-  <project timestamp="1652732662280" name="All files">
+<coverage generated="1686075961997" clover="3.2.0">
+  <project timestamp="1686075961997" name="All files">
     <metrics statements="129" coveredstatements="126" conditionals="44" coveredconditionals="37" methods="41" coveredmethods="40" elements="214" coveredelements="203" complexity="0" loc="129" ncloc="129" packages="5" files="30" classes="30"/>
     <package name="elastic-object">
       <metrics statements="13" coveredstatements="13" conditionals="7" coveredconditionals="6" methods="7" coveredmethods="7"/>
-      <file name="ElasticObject.js" path="F:\htdocs\elastic-object\ElasticObject.js">
+      <file name="ElasticObject.js" path="C:\wamp64\www\elastic-object\ElasticObject.js">
         <metrics statements="13" coveredstatements="13" conditionals="7" coveredconditionals="6" methods="7" coveredmethods="7"/>
         <line num="10" count="32" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
@@ -23,7 +23,7 @@
     </package>
     <package name="elastic-object.data">
       <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
-      <file name="data.js" path="F:\htdocs\elastic-object\data\data.js">
+      <file name="data.js" path="C:\wamp64\www\elastic-object\data\data.js">
         <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
         <line num="2" count="32" type="stmt"/>
         <line num="11" count="32" type="stmt"/>
@@ -40,16 +40,16 @@
     </package>
     <package name="elastic-object.plugins">
       <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="array.js" path="F:\htdocs\elastic-object\plugins\array.js">
+      <file name="array.js" path="C:\wamp64\www\elastic-object\plugins\array.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
-      <file name="native.js" path="F:\htdocs\elastic-object\plugins\native.js">
+      <file name="native.js" path="C:\wamp64\www\elastic-object\plugins\native.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="elastic-object.plugins.array">
       <metrics statements="59" coveredstatements="58" conditionals="16" coveredconditionals="12" methods="14" coveredmethods="14"/>
-      <file name="every.js" path="F:\htdocs\elastic-object\plugins\array\every.js">
+      <file name="every.js" path="C:\wamp64\www\elastic-object\plugins\array\every.js">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="18" count="32" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
@@ -58,7 +58,7 @@
         <line num="22" count="1" type="stmt"/>
         <line num="25" count="2" type="stmt"/>
       </file>
-      <file name="filter.js" path="F:\htdocs\elastic-object\plugins\array\filter.js">
+      <file name="filter.js" path="C:\wamp64\www\elastic-object\plugins\array\filter.js">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="21" count="32" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
@@ -68,7 +68,7 @@
         <line num="26" count="6" type="stmt"/>
         <line num="29" count="2" type="stmt"/>
       </file>
-      <file name="find.js" path="F:\htdocs\elastic-object\plugins\array\find.js">
+      <file name="find.js" path="C:\wamp64\www\elastic-object\plugins\array\find.js">
         <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="23" count="32" type="stmt"/>
         <line num="24" count="3" type="stmt"/>
@@ -76,24 +76,24 @@
         <line num="26" count="11" type="cond" truecount="2" falsecount="0"/>
         <line num="27" count="2" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="forEach.js" path="F:\htdocs\elastic-object\plugins\array\forEach.js">
+      <file name="forEach.js" path="C:\wamp64\www\elastic-object\plugins\array\forEach.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="20" count="32" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="6" type="stmt"/>
       </file>
-      <file name="includes.js" path="F:\htdocs\elastic-object\plugins\array\includes.js">
+      <file name="includes.js" path="C:\wamp64\www\elastic-object\plugins\array\includes.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="17" count="32" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
       </file>
-      <file name="length.js" path="F:\htdocs\elastic-object\plugins\array\length.js">
+      <file name="length.js" path="C:\wamp64\www\elastic-object\plugins\array\length.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="19" count="32" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
       </file>
-      <file name="map.js" path="F:\htdocs\elastic-object\plugins\array\map.js">
+      <file name="map.js" path="C:\wamp64\www\elastic-object\plugins\array\map.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="18" count="32" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
@@ -102,7 +102,7 @@
         <line num="22" count="6" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
       </file>
-      <file name="reduce.js" path="F:\htdocs\elastic-object\plugins\array\reduce.js">
+      <file name="reduce.js" path="C:\wamp64\www\elastic-object\plugins\array\reduce.js">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="26" count="32" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
@@ -111,7 +111,7 @@
         <line num="30" count="6" type="stmt"/>
         <line num="32" count="1" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="reduceRight.js" path="F:\htdocs\elastic-object\plugins\array\reduceRight.js">
+      <file name="reduceRight.js" path="C:\wamp64\www\elastic-object\plugins\array\reduceRight.js">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="24" count="32" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
@@ -120,7 +120,7 @@
         <line num="28" count="3" type="stmt"/>
         <line num="30" count="1" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="some.js" path="F:\htdocs\elastic-object\plugins\array\some.js">
+      <file name="some.js" path="C:\wamp64\www\elastic-object\plugins\array\some.js">
         <metrics statements="6" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="21" count="32" type="stmt"/>
         <line num="22" count="3" type="stmt"/>
@@ -129,7 +129,7 @@
         <line num="25" count="3" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
       </file>
-      <file name="sort.js" path="F:\htdocs\elastic-object\plugins\array\sort.js">
+      <file name="sort.js" path="C:\wamp64\www\elastic-object\plugins\array\sort.js">
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="22" count="32" type="stmt"/>
         <line num="23" count="2" type="cond" truecount="2" falsecount="0"/>
@@ -144,28 +144,28 @@
     </package>
     <package name="elastic-object.plugins.native">
       <metrics statements="46" coveredstatements="45" conditionals="21" coveredconditionals="19" methods="17" coveredmethods="17"/>
-      <file name="assign.js" path="F:\htdocs\elastic-object\plugins\native\assign.js">
+      <file name="assign.js" path="C:\wamp64\www\elastic-object\plugins\native\assign.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="24" count="32" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
       </file>
-      <file name="clone.js" path="F:\htdocs\elastic-object\plugins\native\clone.js">
+      <file name="clone.js" path="C:\wamp64\www\elastic-object\plugins\native\clone.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="22" count="32" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
       </file>
-      <file name="cloneProperty.js" path="F:\htdocs\elastic-object\plugins\native\cloneProperty.js">
+      <file name="cloneProperty.js" path="C:\wamp64\www\elastic-object\plugins\native\cloneProperty.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="25" count="32" type="stmt"/>
         <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
       </file>
-      <file name="entries.js" path="F:\htdocs\elastic-object\plugins\native\entries.js">
+      <file name="entries.js" path="C:\wamp64\www\elastic-object\plugins\native\entries.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="20" count="32" type="stmt"/>
         <line num="21" count="18" type="stmt"/>
       </file>
-      <file name="findPath.js" path="F:\htdocs\elastic-object\plugins\native\findPath.js">
+      <file name="findPath.js" path="C:\wamp64\www\elastic-object\plugins\native\findPath.js">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="21" count="32" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
@@ -173,7 +173,7 @@
         <line num="24" count="20" type="cond" truecount="2" falsecount="0"/>
         <line num="25" count="1" type="stmt"/>
       </file>
-      <file name="flatten.js" path="F:\htdocs\elastic-object\plugins\native\flatten.js">
+      <file name="flatten.js" path="C:\wamp64\www\elastic-object\plugins\native\flatten.js">
         <metrics statements="12" coveredstatements="11" conditionals="12" coveredconditionals="11" methods="3" coveredmethods="3"/>
         <line num="14" count="32" type="cond" truecount="2" falsecount="0"/>
         <line num="15" count="20" type="cond" truecount="3" falsecount="1"/>
@@ -188,49 +188,49 @@
         <line num="47" count="32" type="stmt"/>
         <line num="48" count="4" type="stmt"/>
       </file>
-      <file name="fromEntries.js" path="F:\htdocs\elastic-object\plugins\native\fromEntries.js">
+      <file name="fromEntries.js" path="C:\wamp64\www\elastic-object\plugins\native\fromEntries.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="17" count="32" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
       </file>
-      <file name="get.js" path="F:\htdocs\elastic-object\plugins\native\get.js">
+      <file name="get.js" path="C:\wamp64\www\elastic-object\plugins\native\get.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="28" count="32" type="stmt"/>
         <line num="29" count="24" type="stmt"/>
         <line num="30" count="24" type="cond" truecount="2" falsecount="0"/>
       </file>
-      <file name="has.js" path="F:\htdocs\elastic-object\plugins\native\has.js">
+      <file name="has.js" path="C:\wamp64\www\elastic-object\plugins\native\has.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="23" count="32" type="stmt"/>
         <line num="24" count="4" type="stmt"/>
       </file>
-      <file name="keys.js" path="F:\htdocs\elastic-object\plugins\native\keys.js">
+      <file name="keys.js" path="C:\wamp64\www\elastic-object\plugins\native\keys.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="19" count="32" type="stmt"/>
         <line num="20" count="3" type="stmt"/>
       </file>
-      <file name="paths.js" path="F:\htdocs\elastic-object\plugins\native\paths.js">
+      <file name="paths.js" path="C:\wamp64\www\elastic-object\plugins\native\paths.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="17" count="32" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
       </file>
-      <file name="set.js" path="F:\htdocs\elastic-object\plugins\native\set.js">
+      <file name="set.js" path="C:\wamp64\www\elastic-object\plugins\native\set.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="27" count="32" type="stmt"/>
         <line num="28" count="26" type="stmt"/>
         <line num="29" count="26" type="stmt"/>
       </file>
-      <file name="toJson.js" path="F:\htdocs\elastic-object\plugins\native\toJson.js">
+      <file name="toJson.js" path="C:\wamp64\www\elastic-object\plugins\native\toJson.js">
         <metrics statements="2" coveredstatements="2" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="27" count="32" type="cond" truecount="1" falsecount="0"/>
         <line num="28" count="1" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="unset.js" path="F:\htdocs\elastic-object\plugins\native\unset.js">
+      <file name="unset.js" path="C:\wamp64\www\elastic-object\plugins\native\unset.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="20" count="32" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
       </file>
-      <file name="values.js" path="F:\htdocs\elastic-object\plugins\native\values.js">
+      <file name="values.js" path="C:\wamp64\www\elastic-object\plugins\native\values.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="13" count="32" type="stmt"/>
         <line num="14" count="4" type="stmt"/>

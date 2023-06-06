@@ -405,19 +405,7 @@ Instance flavor of <code>ElasticObject.assign()</code>. Note that this uses <cod
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2
-});
-const source1 = {
-    b: 4,
-    c: 5
-}
-const source2 = {
-    d: 6,
-    e: 7
-}
-console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5, d: 6, e: 7 }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2});const source1 = {    b: 4,    c: 5}const source2 = {    d: 6,    e: 7}console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5, d: 6, e: 7 }</code></pre>
 
 </div>
 
@@ -535,19 +523,7 @@ console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5,
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-        b: {
-            c: 1
-           }
-        }
-});
-const clone = eObj.clone();
-console.log(clone.get('a.b.c')); // 1
-console.log(eObj.get('a.b.c')); // 1
-eObj.set('a.b.c', 2);
-console.log(clone.get('a.b.c')); // 1
-console.log(eObj.get('a.b.c')); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {        b: {            c: 1           }        }});const clone = eObj.clone();console.log(clone.get('a.b.c')); // 1console.log(eObj.get('a.b.c')); // 1eObj.set('a.b.c', 2);console.log(clone.get('a.b.c')); // 1console.log(eObj.get('a.b.c')); // 2</code></pre>
 
 </div>
 
@@ -721,19 +697,7 @@ console.log(eObj.get('a.b.c')); // 2</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-        b: {
-            c: 1
-           }
-        }
-});
-const clone = eObj.cloneProperty('a.b');
-console.log(clone.get('a.b')); // { c: 1 }
-console.log(eObj.get('a.b')); // { c: 1 }
-eObj.set('a.b', 2);
-console.log(clone.get('a.b')); // { c: 1 }
-console.log(eObj.get('a.b')); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {        b: {            c: 1           }        }});const clone = eObj.cloneProperty('a.b');console.log(clone.get('a.b')); // { c: 1 }console.log(eObj.get('a.b')); // { c: 1 }eObj.set('a.b', 2);console.log(clone.get('a.b')); // { c: 1 }console.log(eObj.get('a.b')); // 2</code></pre>
 
 </div>
 
@@ -853,15 +817,7 @@ Not to be confused with <code>Array.entries()</code> which returns an iterator r
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-        ab: 1
-    },
-    b: {
-        bb: 2
-    }
-});
-console.log(eObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {        ab: 1    },    b: {        bb: 2    }});console.log(eObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]</code></pre>
 
 </div>
 
@@ -1081,12 +1037,7 @@ Equivalent of <code>Array.every()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2,
-    c: 3
-});
-console.log(eObj.every(value => typeof value === 'number')); // true</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2,    c: 3});console.log(eObj.every(value => typeof value === 'number')); // true</code></pre>
 
 </div>
 
@@ -1306,15 +1257,7 @@ Equivalent of <code>Array.filter()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: {
-        bb: 2
-    },
-    c: 3,
-    d: 'foo'
-});
-console.log(eObj.filter(value => typeof value === 'number')); // {a:1,c:3}</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: {        bb: 2    },    c: 3,    d: 'foo'});console.log(eObj.filter(value => typeof value === 'number')); // {a:1,c:3}</code></pre>
 
 </div>
 
@@ -1534,15 +1477,7 @@ Equivalent of <code>Array.find()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: {
-        bb: 2
-    },
-    c: 3,
-    d: 'foo'
-});
-console.log(eObj.find(value => typeof value === 'number' &amp;&amp; value > 1)); // 3</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: {        bb: 2    },    c: 3,    d: 'foo'});console.log(eObj.find(value => typeof value === 'number' &amp;&amp; value > 1)); // 3</code></pre>
 
 </div>
 
@@ -1765,15 +1700,7 @@ Equivalent of <code>Array.findIndex()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: {
-        bb: 2
-    },
-    c: 3,
-    d: 'foo'
-});
-console.log(eObj.findPath(value => typeof value === 'number' &amp;&amp; value > 1)); // 'b.bb'</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: {        bb: 2    },    c: 3,    d: 'foo'});console.log(eObj.findPath(value => typeof value === 'number' &amp;&amp; value > 1)); // 'b.bb'</code></pre>
 
 </div>
 
@@ -1884,15 +1811,7 @@ console.log(eObj.findPath(value => typeof value === 'number' &amp;&amp; value > 
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb: 2 }, 'b.bb': 2 }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb: 2 }, 'b.bb': 2 }</code></pre>
 
 </div>
 
@@ -2111,15 +2030,7 @@ console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-}); 
-eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }}); eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code></pre>
 
 </div>
 
@@ -2290,12 +2201,7 @@ Instance flavor of <code>ElasticObject.fromEntries()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const entries = new Map([
-    ['foo', 'bar'],
-    ['baz', 42]
-]);
-const obj = Object.fromEntries(entries);
-console.log(obj); // ElasticObject { foo: 'bar', baz: 42 }</code></pre>
+    <pre class="prettyprint"><code>const entries = new Map([    ['foo', 'bar'],    ['baz', 42]]);const obj = Object.fromEntries(entries);console.log(obj); // ElasticObject { foo: 'bar', baz: 42 }</code></pre>
 
 </div>
 
@@ -2469,20 +2375,7 @@ Check https://www.npmjs.com/package/dot-prop#readme for an example of how to esc
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: function() {}
-    }
-});
-console.log(eObj.get('a.aa')); // 1
-console.log(eObj.get('b.bb')); // [Function: bb]
-console.log(eObj.get('c.cc')); // undefined
-console.log(eObj.get('c.cc', 'default')); // default
-console.log(eObj.get('b.bb', () => 'default')); // [Function: bb]
-console.log(eObj.get('a')); // { aa: 1 }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: function() {}    }});console.log(eObj.get('a.aa')); // 1console.log(eObj.get('b.bb')); // [Function: bb]console.log(eObj.get('c.cc')); // undefinedconsole.log(eObj.get('c.cc', 'default')); // defaultconsole.log(eObj.get('b.bb', () => 'default')); // [Function: bb]console.log(eObj.get('a')); // { aa: 1 }</code></pre>
 
 </div>
 
@@ -2659,17 +2552,7 @@ console.log(eObj.get('a')); // { aa: 1 }</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.has('a.aa')); // true
-console.log(eObj.has('c.cc')); // false
-console.log(eObj.has('a')); // true</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.has('a.aa')); // trueconsole.log(eObj.has('c.cc')); // falseconsole.log(eObj.has('a')); // true</code></pre>
 
 </div>
 
@@ -2840,12 +2723,7 @@ Equivalent of <code>Array.includes()</code>, though without the <code>fromIndex<
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2
-});
-console.log(eObj.includes(1)); // true
-console.log(eObj.includes(3)); // false</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2});console.log(eObj.includes(1)); // trueconsole.log(eObj.includes(3)); // false</code></pre>
 
 </div>
 
@@ -2964,15 +2842,7 @@ Instance flavor of <code>ElasticObject.assign()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.keys()); // ['a','b']</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.keys()); // ['a','b']</code></pre>
 
 </div>
 
@@ -3091,15 +2961,7 @@ Equivalent of <code>Array.length</code>, but implemented as a function.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.length()); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.length()); // 2</code></pre>
 
 </div>
 
@@ -3470,12 +3332,7 @@ Equivalent of <code>Array.map()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2
-});
-const newHObj = eObj.map((value, path) => value * 2);
-console.log(newHObj.get('a')); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2});const newHObj = eObj.map((value, path) => value * 2);console.log(newHObj.get('a')); // 2</code></pre>
 
 </div>
 
@@ -3586,15 +3443,7 @@ console.log(newHObj.get('a')); // 2</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.paths()); // ['a.aa','b.bb']</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.paths()); // ['a.aa','b.bb']</code></pre>
 
 </div>
 
@@ -3855,15 +3704,7 @@ Equivalent of Array.reduce</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 1,
-    b: 2,
-    c: 3,
-};
-const result = obj.reduce((accumulator, value, path, values) => {
-    return accumulator + value;
-}, 0);
-console.log(result); // 6</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 1,    b: 2,    c: 3,};const result = obj.reduce((accumulator, value, path, values) => {    return accumulator + value;}, 0);console.log(result); // 6</code></pre>
 
 </div>
 
@@ -4122,15 +3963,7 @@ Equivalent of Array.reduceRight</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 'l',
-    b: 't',
-    c: 'r'
-};
-const result = obj.reduceRight((accumulator, value, path, values) => {
-    return accumulator + value;
-}, 0);
-console.log(result); // 'rtl'</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 'l',    b: 't',    c: 'r'};const result = obj.reduceRight((accumulator, value, path, values) => {    return accumulator + value;}, 0);console.log(result); // 'rtl'</code></pre>
 
 </div>
 
@@ -4330,19 +4163,7 @@ Arrays are created for missing index properties while objects are created for al
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = new ElasticObject({
-   a: {
-      b: {
-        c: 1
-     }
-  }
-});
-obj.set('a.b.c', 2); // ElasticObject { a: { b: { c: 2 } } }
-obj.get('a.b.c'); // 2
-obj.set('a.b.d', 2); // ElasticObject { a: { b: { c: 2, d: 2 } } }
-obj.get('a.b.d'); // 2
-obj.set('a.b.e.f', 2); // ElasticObject { a: { b: { c: 2, d: 2, e: { f: 2 } } } }
-obj.get('a.b.e.f'); // 2</code></pre>
+    <pre class="prettyprint"><code>const obj = new ElasticObject({   a: {      b: {        c: 1     }  }});obj.set('a.b.c', 2); // ElasticObject { a: { b: { c: 2 } } }obj.get('a.b.c'); // 2obj.set('a.b.d', 2); // ElasticObject { a: { b: { c: 2, d: 2 } } }obj.get('a.b.d'); // 2obj.set('a.b.e.f', 2); // ElasticObject { a: { b: { c: 2, d: 2, e: { f: 2 } } } }obj.get('a.b.e.f'); // 2</code></pre>
 
 </div>
 
@@ -4562,15 +4383,7 @@ Equivalent of <code>Array.some()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 1,
-    b: 2,
-    c: 3,
-};
-const result = obj.some((value, path, flattenedObject) => {
-   return value > 2;
-});
-console.log(result); // true</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 1,    b: 2,    c: 3,};const result = obj.some((value, path, flattenedObject) => {   return value > 2;});console.log(result); // true</code></pre>
 
 </div>
 
@@ -4753,17 +4566,7 @@ Equivalent of Array.sort</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 3,
-    b: 2,
-    c: 1,
-};
-const sorted = obj.sort((a, b) => {
-   return a - b;
-});
-console.log(sorted); // ElasticObject { c: 1, b: 2, a: 3 }
-console.log(sorted.keys()); // ['c', 'b', 'a']
-console.log(sorted.values()); // [1, 2, 3]</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 3,    b: 2,    c: 1,};const sorted = obj.sort((a, b) => {   return a - b;});console.log(sorted); // ElasticObject { c: 1, b: 2, a: 3 }console.log(sorted.keys()); // ['c', 'b', 'a']console.log(sorted.values()); // [1, 2, 3]</code></pre>
 
 </div>
 
@@ -4946,24 +4749,7 @@ console.log(sorted.values()); // [1, 2, 3]</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}
-console.log(eObj.toJSON(true));
-// {
-//     "a": {
-//         "aa": 1
-//     },
-//     "b": {
-//         "bb": 2
-//     }
-// }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}console.log(eObj.toJSON(true));// {//     "a": {//         "aa": 1//     },//     "b": {//         "bb": 2//     }// }</code></pre>
 
 </div>
 
@@ -5136,14 +4922,7 @@ console.log(eObj.toJSON(true));
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = new ElasticObject({
-    a: {
-        b: {
-            c: 1
-        }
-});
-obj.unset('a.b.c');
-obj.get('a.b.c'); // undefined</code></pre>
+    <pre class="prettyprint"><code>const obj = new ElasticObject({    a: {        b: {            c: 1        }});obj.unset('a.b.c');obj.get('a.b.c'); // undefined</code></pre>
 
 </div>
 
@@ -5254,11 +5033,7 @@ obj.get('a.b.c'); // undefined</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = new ElasticObject({
-   a: 1,
-   b: 2
-});
-obj.values(); // [1, 2]</code></pre>
+    <pre class="prettyprint"><code>const obj = new ElasticObject({   a: 1,   b: 2});obj.values(); // [1, 2]</code></pre>
 
 </div>
 
@@ -5672,19 +5447,7 @@ Instance flavor of <code>ElasticObject.assign()</code>. Note that this uses <cod
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2
-});
-const source1 = {
-    b: 4,
-    c: 5
-}
-const source2 = {
-    d: 6,
-    e: 7
-}
-console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5, d: 6, e: 7 }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2});const source1 = {    b: 4,    c: 5}const source2 = {    d: 6,    e: 7}console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5, d: 6, e: 7 }</code></pre>
 
 </div>
 
@@ -5802,19 +5565,7 @@ console.log(eObj.assign(source1, source2)); // ElasticObject { a: 1, b: 4, c: 5,
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-        b: {
-            c: 1
-           }
-        }
-});
-const clone = eObj.clone();
-console.log(clone.get('a.b.c')); // 1
-console.log(eObj.get('a.b.c')); // 1
-eObj.set('a.b.c', 2);
-console.log(clone.get('a.b.c')); // 1
-console.log(eObj.get('a.b.c')); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {        b: {            c: 1           }        }});const clone = eObj.clone();console.log(clone.get('a.b.c')); // 1console.log(eObj.get('a.b.c')); // 1eObj.set('a.b.c', 2);console.log(clone.get('a.b.c')); // 1console.log(eObj.get('a.b.c')); // 2</code></pre>
 
 </div>
 
@@ -5988,19 +5739,7 @@ console.log(eObj.get('a.b.c')); // 2</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-        b: {
-            c: 1
-           }
-        }
-});
-const clone = eObj.cloneProperty('a.b');
-console.log(clone.get('a.b')); // { c: 1 }
-console.log(eObj.get('a.b')); // { c: 1 }
-eObj.set('a.b', 2);
-console.log(clone.get('a.b')); // { c: 1 }
-console.log(eObj.get('a.b')); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {        b: {            c: 1           }        }});const clone = eObj.cloneProperty('a.b');console.log(clone.get('a.b')); // { c: 1 }console.log(eObj.get('a.b')); // { c: 1 }eObj.set('a.b', 2);console.log(clone.get('a.b')); // { c: 1 }console.log(eObj.get('a.b')); // 2</code></pre>
 
 </div>
 
@@ -6120,15 +5859,7 @@ Not to be confused with <code>Array.entries()</code> which returns an iterator r
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-        ab: 1
-    },
-    b: {
-        bb: 2
-    }
-});
-console.log(eObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {        ab: 1    },    b: {        bb: 2    }});console.log(eObj.entries()); // [["a",{"ab":1}],["b",{"bb":2}]]</code></pre>
 
 </div>
 
@@ -6348,12 +6079,7 @@ Equivalent of <code>Array.every()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2,
-    c: 3
-});
-console.log(eObj.every(value => typeof value === 'number')); // true</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2,    c: 3});console.log(eObj.every(value => typeof value === 'number')); // true</code></pre>
 
 </div>
 
@@ -6573,15 +6299,7 @@ Equivalent of <code>Array.filter()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: {
-        bb: 2
-    },
-    c: 3,
-    d: 'foo'
-});
-console.log(eObj.filter(value => typeof value === 'number')); // {a:1,c:3}</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: {        bb: 2    },    c: 3,    d: 'foo'});console.log(eObj.filter(value => typeof value === 'number')); // {a:1,c:3}</code></pre>
 
 </div>
 
@@ -6801,15 +6519,7 @@ Equivalent of <code>Array.find()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: {
-        bb: 2
-    },
-    c: 3,
-    d: 'foo'
-});
-console.log(eObj.find(value => typeof value === 'number' &amp;&amp; value > 1)); // 3</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: {        bb: 2    },    c: 3,    d: 'foo'});console.log(eObj.find(value => typeof value === 'number' &amp;&amp; value > 1)); // 3</code></pre>
 
 </div>
 
@@ -7032,15 +6742,7 @@ Equivalent of <code>Array.findIndex()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: {
-        bb: 2
-    },
-    c: 3,
-    d: 'foo'
-});
-console.log(eObj.findPath(value => typeof value === 'number' &amp;&amp; value > 1)); // 'b.bb'</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: {        bb: 2    },    c: 3,    d: 'foo'});console.log(eObj.findPath(value => typeof value === 'number' &amp;&amp; value > 1)); // 'b.bb'</code></pre>
 
 </div>
 
@@ -7151,15 +6853,7 @@ console.log(eObj.findPath(value => typeof value === 'number' &amp;&amp; value > 
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb: 2 }, 'b.bb': 2 }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb: 2 }, 'b.bb': 2 }</code></pre>
 
 </div>
 
@@ -7378,15 +7072,7 @@ console.log(eObj.flatten()); // ElasticObject { a: { aa: 1 }, 'a.aa': 1, b: { bb
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-}); 
-eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }}); eObj.forEach((value, path) => console.log(value)); // {a.aa: 1, b.bb: 2}</code></pre>
 
 </div>
 
@@ -7557,12 +7243,7 @@ Instance flavor of <code>ElasticObject.fromEntries()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const entries = new Map([
-    ['foo', 'bar'],
-    ['baz', 42]
-]);
-const obj = Object.fromEntries(entries);
-console.log(obj); // ElasticObject { foo: 'bar', baz: 42 }</code></pre>
+    <pre class="prettyprint"><code>const entries = new Map([    ['foo', 'bar'],    ['baz', 42]]);const obj = Object.fromEntries(entries);console.log(obj); // ElasticObject { foo: 'bar', baz: 42 }</code></pre>
 
 </div>
 
@@ -7736,20 +7417,7 @@ Check https://www.npmjs.com/package/dot-prop#readme for an example of how to esc
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: function() {}
-    }
-});
-console.log(eObj.get('a.aa')); // 1
-console.log(eObj.get('b.bb')); // [Function: bb]
-console.log(eObj.get('c.cc')); // undefined
-console.log(eObj.get('c.cc', 'default')); // default
-console.log(eObj.get('b.bb', () => 'default')); // [Function: bb]
-console.log(eObj.get('a')); // { aa: 1 }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: function() {}    }});console.log(eObj.get('a.aa')); // 1console.log(eObj.get('b.bb')); // [Function: bb]console.log(eObj.get('c.cc')); // undefinedconsole.log(eObj.get('c.cc', 'default')); // defaultconsole.log(eObj.get('b.bb', () => 'default')); // [Function: bb]console.log(eObj.get('a')); // { aa: 1 }</code></pre>
 
 </div>
 
@@ -7926,17 +7594,7 @@ console.log(eObj.get('a')); // { aa: 1 }</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.has('a.aa')); // true
-console.log(eObj.has('c.cc')); // false
-console.log(eObj.has('a')); // true</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.has('a.aa')); // trueconsole.log(eObj.has('c.cc')); // falseconsole.log(eObj.has('a')); // true</code></pre>
 
 </div>
 
@@ -8107,12 +7765,7 @@ Equivalent of <code>Array.includes()</code>, though without the <code>fromIndex<
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2
-});
-console.log(eObj.includes(1)); // true
-console.log(eObj.includes(3)); // false</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2});console.log(eObj.includes(1)); // trueconsole.log(eObj.includes(3)); // false</code></pre>
 
 </div>
 
@@ -8231,15 +7884,7 @@ Instance flavor of <code>ElasticObject.assign()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.keys()); // ['a','b']</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.keys()); // ['a','b']</code></pre>
 
 </div>
 
@@ -8358,15 +8003,7 @@ Equivalent of <code>Array.length</code>, but implemented as a function.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.length()); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.length()); // 2</code></pre>
 
 </div>
 
@@ -8737,12 +8374,7 @@ Equivalent of <code>Array.map()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: 1,
-    b: 2
-});
-const newHObj = eObj.map((value, path) => value * 2);
-console.log(newHObj.get('a')); // 2</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: 1,    b: 2});const newHObj = eObj.map((value, path) => value * 2);console.log(newHObj.get('a')); // 2</code></pre>
 
 </div>
 
@@ -8853,15 +8485,7 @@ console.log(newHObj.get('a')); // 2</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.paths()); // ['a.aa','b.bb']</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.paths()); // ['a.aa','b.bb']</code></pre>
 
 </div>
 
@@ -9122,15 +8746,7 @@ Equivalent of Array.reduce</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 1,
-    b: 2,
-    c: 3,
-};
-const result = obj.reduce((accumulator, value, path, values) => {
-    return accumulator + value;
-}, 0);
-console.log(result); // 6</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 1,    b: 2,    c: 3,};const result = obj.reduce((accumulator, value, path, values) => {    return accumulator + value;}, 0);console.log(result); // 6</code></pre>
 
 </div>
 
@@ -9389,15 +9005,7 @@ Equivalent of Array.reduceRight</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 'l',
-    b: 't',
-    c: 'r'
-};
-const result = obj.reduceRight((accumulator, value, path, values) => {
-    return accumulator + value;
-}, 0);
-console.log(result); // 'rtl'</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 'l',    b: 't',    c: 'r'};const result = obj.reduceRight((accumulator, value, path, values) => {    return accumulator + value;}, 0);console.log(result); // 'rtl'</code></pre>
 
 </div>
 
@@ -9597,19 +9205,7 @@ Arrays are created for missing index properties while objects are created for al
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = new ElasticObject({
-   a: {
-      b: {
-        c: 1
-     }
-  }
-});
-obj.set('a.b.c', 2); // ElasticObject { a: { b: { c: 2 } } }
-obj.get('a.b.c'); // 2
-obj.set('a.b.d', 2); // ElasticObject { a: { b: { c: 2, d: 2 } } }
-obj.get('a.b.d'); // 2
-obj.set('a.b.e.f', 2); // ElasticObject { a: { b: { c: 2, d: 2, e: { f: 2 } } } }
-obj.get('a.b.e.f'); // 2</code></pre>
+    <pre class="prettyprint"><code>const obj = new ElasticObject({   a: {      b: {        c: 1     }  }});obj.set('a.b.c', 2); // ElasticObject { a: { b: { c: 2 } } }obj.get('a.b.c'); // 2obj.set('a.b.d', 2); // ElasticObject { a: { b: { c: 2, d: 2 } } }obj.get('a.b.d'); // 2obj.set('a.b.e.f', 2); // ElasticObject { a: { b: { c: 2, d: 2, e: { f: 2 } } } }obj.get('a.b.e.f'); // 2</code></pre>
 
 </div>
 
@@ -9829,15 +9425,7 @@ Equivalent of <code>Array.some()</code>.</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 1,
-    b: 2,
-    c: 3,
-};
-const result = obj.some((value, path, flattenedObject) => {
-   return value > 2;
-});
-console.log(result); // true</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 1,    b: 2,    c: 3,};const result = obj.some((value, path, flattenedObject) => {   return value > 2;});console.log(result); // true</code></pre>
 
 </div>
 
@@ -10020,17 +9608,7 @@ Equivalent of Array.sort</p>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = {
-    a: 3,
-    b: 2,
-    c: 1,
-};
-const sorted = obj.sort((a, b) => {
-   return a - b;
-});
-console.log(sorted); // ElasticObject { c: 1, b: 2, a: 3 }
-console.log(sorted.keys()); // ['c', 'b', 'a']
-console.log(sorted.values()); // [1, 2, 3]</code></pre>
+    <pre class="prettyprint"><code>const obj = {    a: 3,    b: 2,    c: 1,};const sorted = obj.sort((a, b) => {   return a - b;});console.log(sorted); // ElasticObject { c: 1, b: 2, a: 3 }console.log(sorted.keys()); // ['c', 'b', 'a']console.log(sorted.values()); // [1, 2, 3]</code></pre>
 
 </div>
 
@@ -10213,24 +9791,7 @@ console.log(sorted.values()); // [1, 2, 3]</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const eObj = new ElasticObject({
-    a: {
-       aa: 1
-    },
-    b: {
-       bb: 2
-    }
-});
-console.log(eObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}
-console.log(eObj.toJSON(true));
-// {
-//     "a": {
-//         "aa": 1
-//     },
-//     "b": {
-//         "bb": 2
-//     }
-// }</code></pre>
+    <pre class="prettyprint"><code>const eObj = new ElasticObject({    a: {       aa: 1    },    b: {       bb: 2    }});console.log(eObj.toJSON()); // {"a":{"aa":1},"b":{"bb":2}}console.log(eObj.toJSON(true));// {//     "a": {//         "aa": 1//     },//     "b": {//         "bb": 2//     }// }</code></pre>
 
 </div>
 
@@ -10403,14 +9964,7 @@ console.log(eObj.toJSON(true));
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = new ElasticObject({
-    a: {
-        b: {
-            c: 1
-        }
-});
-obj.unset('a.b.c');
-obj.get('a.b.c'); // undefined</code></pre>
+    <pre class="prettyprint"><code>const obj = new ElasticObject({    a: {        b: {            c: 1        }});obj.unset('a.b.c');obj.get('a.b.c'); // undefined</code></pre>
 
 </div>
 
@@ -10521,11 +10075,7 @@ obj.get('a.b.c'); // undefined</code></pre>
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>const obj = new ElasticObject({
-   a: 1,
-   b: 2
-});
-obj.values(); // [1, 2]</code></pre>
+    <pre class="prettyprint"><code>const obj = new ElasticObject({   a: 1,   b: 2});obj.values(); // [1, 2]</code></pre>
 
 </div>
 
@@ -10548,7 +10098,7 @@ obj.values(); // [1, 2]</code></pre>
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon May 16 2022 22:24:38 GMT+0200 (Central European Summer Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Jun 06 2023 20:26:06 GMT+0200 (Central European Summer Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
