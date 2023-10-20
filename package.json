@@ -1,6 +1,6 @@
 {
   "name": "elastic-object",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Just like plain old objects, but with built-in array methods, get(), set() and other goodies",
   "main": "ElasticObject.js",
   "type": "module",
