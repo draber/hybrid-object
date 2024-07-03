@@ -5,7 +5,7 @@
 ![](https://img.shields.io/bundlephobia/min/elastic-object.svg)
 [![DeepScan grade](https://deepscan.io/api/teams/17732/projects/21076/branches/594831/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=17732&pid=21076&bid=594831)
 
-_Plain Objects_ are great for handling data, but they can be a bit clunky. This is where _Elastic Object_ comes in. On top of the regular object functionality, it features `get()` and `set()` with `dotted.string.notation`, as well as loops and all the other good stuff you already know from _Arrays_, _Maps_ or _Sets_. It is  easily extendable in case you want to add your own methods. And it's not huge either.
+_Plain Objects_ are great for handling data, but they can be a bit clunky. This is where _Elastic Object_ comes in. On top of the regular object functionality, it features `get()` and `set()` with `dotted.string.notation`, as well as loops and all the other good stuff you already know from _Arrays_, _Maps_ or _Sets_. It is  easily extendable in case you want to add your own methods. And it's not huge either. 
 
 ## Installation
 
